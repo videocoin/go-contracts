@@ -28,6 +28,7 @@ dirs:
 	mkdir -p bindings/nativebridge
 	mkdir -p bindings/nativeproxy
 	mkdir -p bindings/remotebridge
+	mkdir -p bindings/registry
 
 .PHONY: libs
 libs:
@@ -56,4 +57,5 @@ bindings: dirs abi bin
 	${CODEGEN_DOCKER} --bin bin/NativeBridge.bin --abi abi/NativeBridge.abi --pkg nativebridge --type NativeBridge --out bindings/nativebridge/nativebridge.go
 	${CODEGEN_DOCKER} --bin bin/NativeProxy.bin --abi abi/NativeProxy.abi --pkg nativeproxy --type NativeProxy --out bindings/nativeproxy/nativeproxy.go
 	${CODEGEN_DOCKER} --bin bin/RemoteBridge.bin --abi abi/RemoteBridge.abi --pkg remotebridge --type RemoteBridge --out bindings/remotebridge/remotebridge.go
+	${CODEGEN_DOCKER} --bin bin/Registry.bin --abi abi/Registry.abi --pkg registry --type RemoteBridge --out bindings/registry/registry.go
 	go mod tidy
