@@ -19,7 +19,15 @@ CODEGEN_DOCKER=docker run \
 
 files=${wildcard contracts/contracts/**/*.sol}
 contracts=${files:contracts/%=source/%}
-# contracts=$(addprefix source/,${files})
+
+.PHONY: dirs
+dirs:
+	mkdir -p bindings/streams/
+	mkdir -p bindings/staking/
+	mkdir -p bindings/payments/
+	mkdir -p bindings/nativebridge
+	mkdir -p bindings/nativeproxy
+	mkdir -p bindings/remotebridge
 
 .PHONY: libs
 libs:
@@ -40,17 +48,12 @@ bin: libs
 		${contracts}
 
 .PHONY: bindings
-bindings: abi bin
-	mkdir -p bindings/streams/
+bindings: dirs abi bin
 	${CODEGEN_DOCKER} --bin bin/StreamManager.bin --abi abi/StreamManager.abi --pkg streams --type StreamManager --out bindings/streams/manager.go
 	${CODEGEN_DOCKER} --bin bin/Stream.bin --abi abi/Stream.abi --pkg streams --type Stream --out bindings/streams/stream.go
-	mkdir -p bindings/staking/
 	${CODEGEN_DOCKER} --bin bin/StakingManager.bin --abi abi/StakingManager.abi --pkg staking --type StakingManager --out bindings/staking/manager.go
-	mkdir -p bindings/payments/
 	${CODEGEN_DOCKER} --bin bin/PaymentManager.bin --abi abi/PaymentManager.abi --pkg payments --type PaymentManager --out bindings/payments/manager.go
-	mkdir -p bindings/nativebridge
 	${CODEGEN_DOCKER} --bin bin/NativeBridge.bin --abi abi/NativeBridge.abi --pkg nativebridge --type NativeBridge --out bindings/nativebridge/nativebridge.go
-	mkdir -p bindings/nativeproxy
 	${CODEGEN_DOCKER} --bin bin/NativeProxy.bin --abi abi/NativeProxy.abi --pkg nativeproxy --type NativeProxy --out bindings/nativeproxy/nativeproxy.go
-	mkdir -p bindings/remotebridge
 	${CODEGEN_DOCKER} --bin bin/RemoteBridge.bin --abi abi/RemoteBridge.abi --pkg remotebridge --type RemoteBridge --out bindings/remotebridge/remotebridge.go
+	go mod tidy
