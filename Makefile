@@ -59,3 +59,21 @@ bindings: dirs abi bin
 	${CODEGEN_DOCKER} --bin bin/RemoteBridge.bin --abi abi/RemoteBridge.abi --pkg remotebridge --type RemoteBridge --out bindings/remotebridge/remotebridge.go
 	${CODEGEN_DOCKER} --bin bin/Registry.bin --abi abi/Registry.abi --pkg registry --type Registry --out bindings/registry/registry.go
 	go mod tidy
+
+
+.PHONY: deps
+deps:
+	go get github.com/ethereum/go-ethereum/cmd/abigen
+	go get github.com/goware/modvendor
+	go get golang.org/x/tools/cmd/stringer
+
+.PHONY: vendor
+vendor:
+	go mod tidy
+	go mod vendor
+	modvendor -copy="**/*.c **/*.h" -v
+
+.PHONY: build
+build:
+	mkdir -p build
+	go build -o build/bin/example -tags=$(TAGS) -mod=readonly ./example
