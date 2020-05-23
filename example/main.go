@@ -21,7 +21,7 @@ type config struct {
 func defaultConfig() *config {
 	return &config{
 		chainRPC:     "http://127.0.0.1:8545",
-		registryAddr: "0x3E4B9Ff6223C974A998bA2E314C587c080543B8c",
+		registryAddr: "0x7d8773E7352e3B7FBDB183eFB2b0dAFf52FfA545",
 		contractName: "StreamManager",
 	}
 }

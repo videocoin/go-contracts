@@ -2,7 +2,6 @@ package resolver
 
 import (
 	"fmt"
-	"math/big"
 
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 	"github.com/ethereum/go-ethereum/common"
@@ -50,25 +49,15 @@ func (e enforcer) ContractInfo(name string, version string) (*registry.RegistryC
 }
 
 func (e enforcer) ContractVersions(name string) ([]string, error) {
-	var ret []string
 	registry, err := registry.NewRegistry(common.HexToAddress(e.registryAddress), e.client)
 	if err != nil {
-		return ret, err
+		return nil, err
 	}
 
-	length, err := registry.Versions(nil, name)
+	versions, err := registry.Versions(nil, name)
 	if err != nil {
-		return ret, err
+		return nil, err
 	}
 
-	var i int64
-	for i = 0; i < length.Int64(); i++ {
-		version, err := registry.Version(nil, name, new(big.Int).SetInt64(i))
-		if err != nil {
-			return ret, err
-		}
-		ret = append(ret, version)
-	}
-
-	return ret, nil
+	return versions, nil
 }
