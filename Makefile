@@ -29,20 +29,23 @@ dirs:
 	mkdir -p bindings/nativeproxy
 	mkdir -p bindings/remotebridge
 	mkdir -p bindings/registry
+	mkdir -p bindings/stakingescrow
+	mkdir -p bindings/casstaking
+	mkdir -p bindings/testerc
 
 .PHONY: libs
 libs:
 	npm install --only=prod --prefix contracts openzeppelin-solidity
 
 .PHONY: abi
-abi: libs
+abi:
 	mkdir -p build/abi/
 	${ABIGEN_DOCKER} -o /build --abi --overwrite \
 		--allow-paths /source openzeppelin-solidity=source/node_modules/openzeppelin-solidity \
 		${contracts}
 
 .PHONY: bin
-bin: libs
+bin:
 	mkdir -p build/bin/
 	${BINGEN_DOCKER} -o /build --bin --overwrite \
 		--allow-paths /source openzeppelin-solidity=source/node_modules/openzeppelin-solidity \
@@ -53,11 +56,17 @@ bindings: dirs abi bin
 	${CODEGEN_DOCKER} --bin bin/StreamManager.bin --abi abi/StreamManager.abi --pkg streams --type StreamManager --out bindings/streams/manager.go
 	${CODEGEN_DOCKER} --bin bin/Stream.bin --abi abi/Stream.abi --pkg streams --type Stream --out bindings/streams/stream.go
 	${CODEGEN_DOCKER} --bin bin/StakingManager.bin --abi abi/StakingManager.abi --pkg staking --type StakingManager --out bindings/staking/manager.go
+
 	${CODEGEN_DOCKER} --bin bin/PaymentManager.bin --abi abi/PaymentManager.abi --pkg payments --type PaymentManager --out bindings/payments/manager.go
+
 	${CODEGEN_DOCKER} --bin bin/NativeBridge.bin --abi abi/NativeBridge.abi --pkg nativebridge --type NativeBridge --out bindings/nativebridge/nativebridge.go
 	${CODEGEN_DOCKER} --bin bin/NativeProxy.bin --abi abi/NativeProxy.abi --pkg nativeproxy --type NativeProxy --out bindings/nativeproxy/nativeproxy.go
 	${CODEGEN_DOCKER} --bin bin/RemoteBridge.bin --abi abi/RemoteBridge.abi --pkg remotebridge --type RemoteBridge --out bindings/remotebridge/remotebridge.go
-	${CODEGEN_DOCKER} --bin bin/Registry.bin --abi abi/Registry.abi --pkg registry --type Registry --out bindings/registry/registry.go
+
+	${CODEGEN_DOCKER} --bin bin/StakingEscrow.bin --abi abi/StakingEscrow.abi --pkg stakingescrow --type StakingEscrow --out bindings/stakingescrow/escrow.go
+	${CODEGEN_DOCKER} --bin bin/TestERC.bin --abi abi/TestERC.abi --pkg testerc --type TestERC --out bindings/testerc/erc.go
+	${CODEGEN_DOCKER} --bin bin/CASStaking.bin --abi abi/CASStaking.abi --pkg casstaking --type CASStaking --out bindings/casstaking/cas.go
+
 	go mod tidy
 
 

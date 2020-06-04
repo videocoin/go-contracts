@@ -20,7 +20,6 @@ var (
 	_ = big.NewInt
 	_ = strings.NewReader
 	_ = ethereum.NotFound
-	_ = abi.U256
 	_ = bind.Bind
 	_ = common.Big1
 	_ = types.BloomLookup
@@ -28,10 +27,10 @@ var (
 )
 
 // NativeProxyABI is the input ABI used to generate the binding from.
-const NativeProxyABI = "[{\"inputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"from\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"value\",\"type\":\"uint256\"}],\"name\":\"TransferProxied\",\"type\":\"event\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"addresspayable\",\"name\":\"to\",\"type\":\"address\"}],\"name\":\"proxy\",\"outputs\":[],\"payable\":true,\"stateMutability\":\"payable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"version\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"}]"
+const NativeProxyABI = "[{\"inputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"from\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"value\",\"type\":\"uint256\"}],\"name\":\"TransferProxied\",\"type\":\"event\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"addresspayable\",\"name\":\"to\",\"type\":\"address\"}],\"name\":\"proxy\",\"outputs\":[],\"payable\":true,\"stateMutability\":\"payable\",\"type\":\"function\"}]"
 
 // NativeProxyBin is the compiled bytecode used for deploying new contracts.
-var NativeProxyBin = "0x608060405234801561001057600080fd5b506102b5806100206000396000f3fe6080604052600436106100295760003560e01c806306713c3e1461002e57806354fd4d5014610072575b600080fd5b6100706004803603602081101561004457600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190505050610102565b005b34801561007e57600080fd5b50610087610247565b6040518080602001828103825283818151815260200191508051906020019080838360005b838110156100c75780820151818401526020810190506100ac565b50505050905090810190601f1680156100f45780820380516001836020036101000a031916815260200191505b509250505060405180910390f35b60008173ffffffffffffffffffffffffffffffffffffffff163460405180600001905060006040518083038185875af1925050503d8060008114610162576040519150601f19603f3d011682016040523d82523d6000602084013e610167565b606091505b50509050806101de576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004018080602001828103825260158152602001807f7472616e736665722070726f7879206661696c6564000000000000000000000081525060200191505060405180910390fd5b8173ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff167ffb13b2ffecafe583990a6ad9a7f0ee9e37c92e5932bb33b2491e7b4617600b99346040518082815260200191505060405180910390a35050565b6040518060400160405280601381526020017f7374756220393939392e393939392e39393939000000000000000000000000008152508156fea265627a7a72315820f86d4652f3a651b77341002756ff0f43fe42ad786292988b11683e66115e848364736f6c634300050d0032"
+var NativeProxyBin = "0x608060405234801561001057600080fd5b506101e1806100206000396000f3fe60806040526004361061001e5760003560e01c806306713c3e14610023575b600080fd5b6100656004803603602081101561003957600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190505050610067565b005b60008173ffffffffffffffffffffffffffffffffffffffff163460405180600001905060006040518083038185875af1925050503d80600081146100c7576040519150601f19603f3d011682016040523d82523d6000602084013e6100cc565b606091505b5050905080610143576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004018080602001828103825260158152602001807f7472616e736665722070726f7879206661696c6564000000000000000000000081525060200191505060405180910390fd5b8173ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff167ffb13b2ffecafe583990a6ad9a7f0ee9e37c92e5932bb33b2491e7b4617600b99346040518082815260200191505060405180910390a3505056fea265627a7a7231582056ff6c34db745a259d7c1b44e60d87c075325b4abf22f1f28859495d443f64be64736f6c634300050d0032"
 
 // DeployNativeProxy deploys a new Ethereum contract, binding an instance of NativeProxy to it.
 func DeployNativeProxy(auth *bind.TransactOpts, backend bind.ContractBackend) (common.Address, *types.Transaction, *NativeProxy, error) {
@@ -189,49 +188,23 @@ func (_NativeProxy *NativeProxyTransactorRaw) Transact(opts *bind.TransactOpts, 
 	return _NativeProxy.Contract.contract.Transact(opts, method, params...)
 }
 
-// Version is a free data retrieval call binding the contract method 0x54fd4d50.
-//
-// Solidity: function version() constant returns(string)
-func (_NativeProxy *NativeProxyCaller) Version(opts *bind.CallOpts) (string, error) {
-	var (
-		ret0 = new(string)
-	)
-	out := ret0
-	err := _NativeProxy.contract.Call(opts, out, "version")
-	return *ret0, err
-}
-
-// Version is a free data retrieval call binding the contract method 0x54fd4d50.
-//
-// Solidity: function version() constant returns(string)
-func (_NativeProxy *NativeProxySession) Version() (string, error) {
-	return _NativeProxy.Contract.Version(&_NativeProxy.CallOpts)
-}
-
-// Version is a free data retrieval call binding the contract method 0x54fd4d50.
-//
-// Solidity: function version() constant returns(string)
-func (_NativeProxy *NativeProxyCallerSession) Version() (string, error) {
-	return _NativeProxy.Contract.Version(&_NativeProxy.CallOpts)
-}
-
 // Proxy is a paid mutator transaction binding the contract method 0x06713c3e.
 //
-// Solidity: function proxy(address to) returns()
+// Solidity: function proxy(address to) payable returns()
 func (_NativeProxy *NativeProxyTransactor) Proxy(opts *bind.TransactOpts, to common.Address) (*types.Transaction, error) {
 	return _NativeProxy.contract.Transact(opts, "proxy", to)
 }
 
 // Proxy is a paid mutator transaction binding the contract method 0x06713c3e.
 //
-// Solidity: function proxy(address to) returns()
+// Solidity: function proxy(address to) payable returns()
 func (_NativeProxy *NativeProxySession) Proxy(to common.Address) (*types.Transaction, error) {
 	return _NativeProxy.Contract.Proxy(&_NativeProxy.TransactOpts, to)
 }
 
 // Proxy is a paid mutator transaction binding the contract method 0x06713c3e.
 //
-// Solidity: function proxy(address to) returns()
+// Solidity: function proxy(address to) payable returns()
 func (_NativeProxy *NativeProxyTransactorSession) Proxy(to common.Address) (*types.Transaction, error) {
 	return _NativeProxy.Contract.Proxy(&_NativeProxy.TransactOpts, to)
 }

@@ -20,7 +20,6 @@ var (
 	_ = big.NewInt
 	_ = strings.NewReader
 	_ = ethereum.NotFound
-	_ = abi.U256
 	_ = bind.Bind
 	_ = common.Big1
 	_ = types.BloomLookup
@@ -191,7 +190,7 @@ func (_Stream *StreamTransactorRaw) Transact(opts *bind.TransactOpts, method str
 
 // Client is a free data retrieval call binding the contract method 0x109e94cf.
 //
-// Solidity: function client() constant returns(address)
+// Solidity: function client() view returns(address)
 func (_Stream *StreamCaller) Client(opts *bind.CallOpts) (common.Address, error) {
 	var (
 		ret0 = new(common.Address)
@@ -203,21 +202,21 @@ func (_Stream *StreamCaller) Client(opts *bind.CallOpts) (common.Address, error)
 
 // Client is a free data retrieval call binding the contract method 0x109e94cf.
 //
-// Solidity: function client() constant returns(address)
+// Solidity: function client() view returns(address)
 func (_Stream *StreamSession) Client() (common.Address, error) {
 	return _Stream.Contract.Client(&_Stream.CallOpts)
 }
 
 // Client is a free data retrieval call binding the contract method 0x109e94cf.
 //
-// Solidity: function client() constant returns(address)
+// Solidity: function client() view returns(address)
 func (_Stream *StreamCallerSession) Client() (common.Address, error) {
 	return _Stream.Contract.Client(&_Stream.CallOpts)
 }
 
 // Ended is a free data retrieval call binding the contract method 0x12fa6feb.
 //
-// Solidity: function ended() constant returns(bool)
+// Solidity: function ended() view returns(bool)
 func (_Stream *StreamCaller) Ended(opts *bind.CallOpts) (bool, error) {
 	var (
 		ret0 = new(bool)
@@ -229,21 +228,21 @@ func (_Stream *StreamCaller) Ended(opts *bind.CallOpts) (bool, error) {
 
 // Ended is a free data retrieval call binding the contract method 0x12fa6feb.
 //
-// Solidity: function ended() constant returns(bool)
+// Solidity: function ended() view returns(bool)
 func (_Stream *StreamSession) Ended() (bool, error) {
 	return _Stream.Contract.Ended(&_Stream.CallOpts)
 }
 
 // Ended is a free data retrieval call binding the contract method 0x12fa6feb.
 //
-// Solidity: function ended() constant returns(bool)
+// Solidity: function ended() view returns(bool)
 func (_Stream *StreamCallerSession) Ended() (bool, error) {
 	return _Stream.Contract.Ended(&_Stream.CallOpts)
 }
 
 // GetCandidateProof is a free data retrieval call binding the contract method 0x2f750f20.
 //
-// Solidity: function getCandidateProof(uint256 profile, uint256 chunkId) constant returns(address miner, uint256 outputChunkId, uint256 proof)
+// Solidity: function getCandidateProof(uint256 profile, uint256 chunkId) view returns(address miner, uint256 outputChunkId, uint256 proof)
 func (_Stream *StreamCaller) GetCandidateProof(opts *bind.CallOpts, profile *big.Int, chunkId *big.Int) (struct {
 	Miner         common.Address
 	OutputChunkId *big.Int
@@ -261,7 +260,7 @@ func (_Stream *StreamCaller) GetCandidateProof(opts *bind.CallOpts, profile *big
 
 // GetCandidateProof is a free data retrieval call binding the contract method 0x2f750f20.
 //
-// Solidity: function getCandidateProof(uint256 profile, uint256 chunkId) constant returns(address miner, uint256 outputChunkId, uint256 proof)
+// Solidity: function getCandidateProof(uint256 profile, uint256 chunkId) view returns(address miner, uint256 outputChunkId, uint256 proof)
 func (_Stream *StreamSession) GetCandidateProof(profile *big.Int, chunkId *big.Int) (struct {
 	Miner         common.Address
 	OutputChunkId *big.Int
@@ -272,7 +271,7 @@ func (_Stream *StreamSession) GetCandidateProof(profile *big.Int, chunkId *big.I
 
 // GetCandidateProof is a free data retrieval call binding the contract method 0x2f750f20.
 //
-// Solidity: function getCandidateProof(uint256 profile, uint256 chunkId) constant returns(address miner, uint256 outputChunkId, uint256 proof)
+// Solidity: function getCandidateProof(uint256 profile, uint256 chunkId) view returns(address miner, uint256 outputChunkId, uint256 proof)
 func (_Stream *StreamCallerSession) GetCandidateProof(profile *big.Int, chunkId *big.Int) (struct {
 	Miner         common.Address
 	OutputChunkId *big.Int
@@ -283,7 +282,7 @@ func (_Stream *StreamCallerSession) GetCandidateProof(profile *big.Int, chunkId 
 
 // GetInChunkCount is a free data retrieval call binding the contract method 0x73f93b2a.
 //
-// Solidity: function getInChunkCount() constant returns(uint256)
+// Solidity: function getInChunkCount() view returns(uint256)
 func (_Stream *StreamCaller) GetInChunkCount(opts *bind.CallOpts) (*big.Int, error) {
 	var (
 		ret0 = new(*big.Int)
@@ -295,21 +294,21 @@ func (_Stream *StreamCaller) GetInChunkCount(opts *bind.CallOpts) (*big.Int, err
 
 // GetInChunkCount is a free data retrieval call binding the contract method 0x73f93b2a.
 //
-// Solidity: function getInChunkCount() constant returns(uint256)
+// Solidity: function getInChunkCount() view returns(uint256)
 func (_Stream *StreamSession) GetInChunkCount() (*big.Int, error) {
 	return _Stream.Contract.GetInChunkCount(&_Stream.CallOpts)
 }
 
 // GetInChunkCount is a free data retrieval call binding the contract method 0x73f93b2a.
 //
-// Solidity: function getInChunkCount() constant returns(uint256)
+// Solidity: function getInChunkCount() view returns(uint256)
 func (_Stream *StreamCallerSession) GetInChunkCount() (*big.Int, error) {
 	return _Stream.Contract.GetInChunkCount(&_Stream.CallOpts)
 }
 
 // GetInChunks is a free data retrieval call binding the contract method 0xc6175193.
 //
-// Solidity: function getInChunks() constant returns(uint256[])
+// Solidity: function getInChunks() view returns(uint256[])
 func (_Stream *StreamCaller) GetInChunks(opts *bind.CallOpts) ([]*big.Int, error) {
 	var (
 		ret0 = new([]*big.Int)
@@ -321,21 +320,21 @@ func (_Stream *StreamCaller) GetInChunks(opts *bind.CallOpts) ([]*big.Int, error
 
 // GetInChunks is a free data retrieval call binding the contract method 0xc6175193.
 //
-// Solidity: function getInChunks() constant returns(uint256[])
+// Solidity: function getInChunks() view returns(uint256[])
 func (_Stream *StreamSession) GetInChunks() ([]*big.Int, error) {
 	return _Stream.Contract.GetInChunks(&_Stream.CallOpts)
 }
 
 // GetInChunks is a free data retrieval call binding the contract method 0xc6175193.
 //
-// Solidity: function getInChunks() constant returns(uint256[])
+// Solidity: function getInChunks() view returns(uint256[])
 func (_Stream *StreamCallerSession) GetInChunks() ([]*big.Int, error) {
 	return _Stream.Contract.GetInChunks(&_Stream.CallOpts)
 }
 
 // GetOutChunks is a free data retrieval call binding the contract method 0x62372298.
 //
-// Solidity: function getOutChunks(uint256 profile) constant returns(uint256[])
+// Solidity: function getOutChunks(uint256 profile) view returns(uint256[])
 func (_Stream *StreamCaller) GetOutChunks(opts *bind.CallOpts, profile *big.Int) ([]*big.Int, error) {
 	var (
 		ret0 = new([]*big.Int)
@@ -347,21 +346,21 @@ func (_Stream *StreamCaller) GetOutChunks(opts *bind.CallOpts, profile *big.Int)
 
 // GetOutChunks is a free data retrieval call binding the contract method 0x62372298.
 //
-// Solidity: function getOutChunks(uint256 profile) constant returns(uint256[])
+// Solidity: function getOutChunks(uint256 profile) view returns(uint256[])
 func (_Stream *StreamSession) GetOutChunks(profile *big.Int) ([]*big.Int, error) {
 	return _Stream.Contract.GetOutChunks(&_Stream.CallOpts, profile)
 }
 
 // GetOutChunks is a free data retrieval call binding the contract method 0x62372298.
 //
-// Solidity: function getOutChunks(uint256 profile) constant returns(uint256[])
+// Solidity: function getOutChunks(uint256 profile) view returns(uint256[])
 func (_Stream *StreamCallerSession) GetOutChunks(profile *big.Int) ([]*big.Int, error) {
 	return _Stream.Contract.GetOutChunks(&_Stream.CallOpts, profile)
 }
 
 // GetProfileCount is a free data retrieval call binding the contract method 0x3697611a.
 //
-// Solidity: function getProfileCount() constant returns(uint256)
+// Solidity: function getProfileCount() view returns(uint256)
 func (_Stream *StreamCaller) GetProfileCount(opts *bind.CallOpts) (*big.Int, error) {
 	var (
 		ret0 = new(*big.Int)
@@ -373,21 +372,21 @@ func (_Stream *StreamCaller) GetProfileCount(opts *bind.CallOpts) (*big.Int, err
 
 // GetProfileCount is a free data retrieval call binding the contract method 0x3697611a.
 //
-// Solidity: function getProfileCount() constant returns(uint256)
+// Solidity: function getProfileCount() view returns(uint256)
 func (_Stream *StreamSession) GetProfileCount() (*big.Int, error) {
 	return _Stream.Contract.GetProfileCount(&_Stream.CallOpts)
 }
 
 // GetProfileCount is a free data retrieval call binding the contract method 0x3697611a.
 //
-// Solidity: function getProfileCount() constant returns(uint256)
+// Solidity: function getProfileCount() view returns(uint256)
 func (_Stream *StreamCallerSession) GetProfileCount() (*big.Int, error) {
 	return _Stream.Contract.GetProfileCount(&_Stream.CallOpts)
 }
 
 // GetProof is a free data retrieval call binding the contract method 0x28cc413a.
 //
-// Solidity: function getProof(uint256 profile, uint256 chunkId, uint256 idx) constant returns(address miner, uint256 outputChunkId, uint256 proof)
+// Solidity: function getProof(uint256 profile, uint256 chunkId, uint256 idx) view returns(address miner, uint256 outputChunkId, uint256 proof)
 func (_Stream *StreamCaller) GetProof(opts *bind.CallOpts, profile *big.Int, chunkId *big.Int, idx *big.Int) (struct {
 	Miner         common.Address
 	OutputChunkId *big.Int
@@ -405,7 +404,7 @@ func (_Stream *StreamCaller) GetProof(opts *bind.CallOpts, profile *big.Int, chu
 
 // GetProof is a free data retrieval call binding the contract method 0x28cc413a.
 //
-// Solidity: function getProof(uint256 profile, uint256 chunkId, uint256 idx) constant returns(address miner, uint256 outputChunkId, uint256 proof)
+// Solidity: function getProof(uint256 profile, uint256 chunkId, uint256 idx) view returns(address miner, uint256 outputChunkId, uint256 proof)
 func (_Stream *StreamSession) GetProof(profile *big.Int, chunkId *big.Int, idx *big.Int) (struct {
 	Miner         common.Address
 	OutputChunkId *big.Int
@@ -416,7 +415,7 @@ func (_Stream *StreamSession) GetProof(profile *big.Int, chunkId *big.Int, idx *
 
 // GetProof is a free data retrieval call binding the contract method 0x28cc413a.
 //
-// Solidity: function getProof(uint256 profile, uint256 chunkId, uint256 idx) constant returns(address miner, uint256 outputChunkId, uint256 proof)
+// Solidity: function getProof(uint256 profile, uint256 chunkId, uint256 idx) view returns(address miner, uint256 outputChunkId, uint256 proof)
 func (_Stream *StreamCallerSession) GetProof(profile *big.Int, chunkId *big.Int, idx *big.Int) (struct {
 	Miner         common.Address
 	OutputChunkId *big.Int
@@ -427,7 +426,7 @@ func (_Stream *StreamCallerSession) GetProof(profile *big.Int, chunkId *big.Int,
 
 // GetProofCount is a free data retrieval call binding the contract method 0x7b40855d.
 //
-// Solidity: function getProofCount(uint256 profile, uint256 chunkId) constant returns(uint256)
+// Solidity: function getProofCount(uint256 profile, uint256 chunkId) view returns(uint256)
 func (_Stream *StreamCaller) GetProofCount(opts *bind.CallOpts, profile *big.Int, chunkId *big.Int) (*big.Int, error) {
 	var (
 		ret0 = new(*big.Int)
@@ -439,21 +438,21 @@ func (_Stream *StreamCaller) GetProofCount(opts *bind.CallOpts, profile *big.Int
 
 // GetProofCount is a free data retrieval call binding the contract method 0x7b40855d.
 //
-// Solidity: function getProofCount(uint256 profile, uint256 chunkId) constant returns(uint256)
+// Solidity: function getProofCount(uint256 profile, uint256 chunkId) view returns(uint256)
 func (_Stream *StreamSession) GetProofCount(profile *big.Int, chunkId *big.Int) (*big.Int, error) {
 	return _Stream.Contract.GetProofCount(&_Stream.CallOpts, profile, chunkId)
 }
 
 // GetProofCount is a free data retrieval call binding the contract method 0x7b40855d.
 //
-// Solidity: function getProofCount(uint256 profile, uint256 chunkId) constant returns(uint256)
+// Solidity: function getProofCount(uint256 profile, uint256 chunkId) view returns(uint256)
 func (_Stream *StreamCallerSession) GetProofCount(profile *big.Int, chunkId *big.Int) (*big.Int, error) {
 	return _Stream.Contract.GetProofCount(&_Stream.CallOpts, profile, chunkId)
 }
 
 // GetValidProof is a free data retrieval call binding the contract method 0xbf032f53.
 //
-// Solidity: function getValidProof(uint256 profile, uint256 chunkId) constant returns(address miner, address validator, uint256 outputChunkId, uint256 proof)
+// Solidity: function getValidProof(uint256 profile, uint256 chunkId) view returns(address miner, address validator, uint256 outputChunkId, uint256 proof)
 func (_Stream *StreamCaller) GetValidProof(opts *bind.CallOpts, profile *big.Int, chunkId *big.Int) (struct {
 	Miner         common.Address
 	Validator     common.Address
@@ -473,7 +472,7 @@ func (_Stream *StreamCaller) GetValidProof(opts *bind.CallOpts, profile *big.Int
 
 // GetValidProof is a free data retrieval call binding the contract method 0xbf032f53.
 //
-// Solidity: function getValidProof(uint256 profile, uint256 chunkId) constant returns(address miner, address validator, uint256 outputChunkId, uint256 proof)
+// Solidity: function getValidProof(uint256 profile, uint256 chunkId) view returns(address miner, address validator, uint256 outputChunkId, uint256 proof)
 func (_Stream *StreamSession) GetValidProof(profile *big.Int, chunkId *big.Int) (struct {
 	Miner         common.Address
 	Validator     common.Address
@@ -485,7 +484,7 @@ func (_Stream *StreamSession) GetValidProof(profile *big.Int, chunkId *big.Int) 
 
 // GetValidProof is a free data retrieval call binding the contract method 0xbf032f53.
 //
-// Solidity: function getValidProof(uint256 profile, uint256 chunkId) constant returns(address miner, address validator, uint256 outputChunkId, uint256 proof)
+// Solidity: function getValidProof(uint256 profile, uint256 chunkId) view returns(address miner, address validator, uint256 outputChunkId, uint256 proof)
 func (_Stream *StreamCallerSession) GetValidProof(profile *big.Int, chunkId *big.Int) (struct {
 	Miner         common.Address
 	Validator     common.Address
@@ -497,7 +496,7 @@ func (_Stream *StreamCallerSession) GetValidProof(profile *big.Int, chunkId *big
 
 // GetVersion is a free data retrieval call binding the contract method 0x0d8e6e2c.
 //
-// Solidity: function getVersion() constant returns(string)
+// Solidity: function getVersion() view returns(string)
 func (_Stream *StreamCaller) GetVersion(opts *bind.CallOpts) (string, error) {
 	var (
 		ret0 = new(string)
@@ -509,21 +508,21 @@ func (_Stream *StreamCaller) GetVersion(opts *bind.CallOpts) (string, error) {
 
 // GetVersion is a free data retrieval call binding the contract method 0x0d8e6e2c.
 //
-// Solidity: function getVersion() constant returns(string)
+// Solidity: function getVersion() view returns(string)
 func (_Stream *StreamSession) GetVersion() (string, error) {
 	return _Stream.Contract.GetVersion(&_Stream.CallOpts)
 }
 
 // GetVersion is a free data retrieval call binding the contract method 0x0d8e6e2c.
 //
-// Solidity: function getVersion() constant returns(string)
+// Solidity: function getVersion() view returns(string)
 func (_Stream *StreamCallerSession) GetVersion() (string, error) {
 	return _Stream.Contract.GetVersion(&_Stream.CallOpts)
 }
 
 // Getprofiles is a free data retrieval call binding the contract method 0x00ca5d92.
 //
-// Solidity: function getprofiles() constant returns(uint256[])
+// Solidity: function getprofiles() view returns(uint256[])
 func (_Stream *StreamCaller) Getprofiles(opts *bind.CallOpts) ([]*big.Int, error) {
 	var (
 		ret0 = new([]*big.Int)
@@ -535,21 +534,21 @@ func (_Stream *StreamCaller) Getprofiles(opts *bind.CallOpts) ([]*big.Int, error
 
 // Getprofiles is a free data retrieval call binding the contract method 0x00ca5d92.
 //
-// Solidity: function getprofiles() constant returns(uint256[])
+// Solidity: function getprofiles() view returns(uint256[])
 func (_Stream *StreamSession) Getprofiles() ([]*big.Int, error) {
 	return _Stream.Contract.Getprofiles(&_Stream.CallOpts)
 }
 
 // Getprofiles is a free data retrieval call binding the contract method 0x00ca5d92.
 //
-// Solidity: function getprofiles() constant returns(uint256[])
+// Solidity: function getprofiles() view returns(uint256[])
 func (_Stream *StreamCallerSession) Getprofiles() ([]*big.Int, error) {
 	return _Stream.Contract.Getprofiles(&_Stream.CallOpts)
 }
 
 // HasValidProof is a free data retrieval call binding the contract method 0x4c0b715c.
 //
-// Solidity: function hasValidProof(uint256 profile, uint256 chunkId) constant returns(bool)
+// Solidity: function hasValidProof(uint256 profile, uint256 chunkId) view returns(bool)
 func (_Stream *StreamCaller) HasValidProof(opts *bind.CallOpts, profile *big.Int, chunkId *big.Int) (bool, error) {
 	var (
 		ret0 = new(bool)
@@ -561,21 +560,21 @@ func (_Stream *StreamCaller) HasValidProof(opts *bind.CallOpts, profile *big.Int
 
 // HasValidProof is a free data retrieval call binding the contract method 0x4c0b715c.
 //
-// Solidity: function hasValidProof(uint256 profile, uint256 chunkId) constant returns(bool)
+// Solidity: function hasValidProof(uint256 profile, uint256 chunkId) view returns(bool)
 func (_Stream *StreamSession) HasValidProof(profile *big.Int, chunkId *big.Int) (bool, error) {
 	return _Stream.Contract.HasValidProof(&_Stream.CallOpts, profile, chunkId)
 }
 
 // HasValidProof is a free data retrieval call binding the contract method 0x4c0b715c.
 //
-// Solidity: function hasValidProof(uint256 profile, uint256 chunkId) constant returns(bool)
+// Solidity: function hasValidProof(uint256 profile, uint256 chunkId) view returns(bool)
 func (_Stream *StreamCallerSession) HasValidProof(profile *big.Int, chunkId *big.Int) (bool, error) {
 	return _Stream.Contract.HasValidProof(&_Stream.CallOpts, profile, chunkId)
 }
 
 // Id is a free data retrieval call binding the contract method 0xaf640d0f.
 //
-// Solidity: function id() constant returns(uint256)
+// Solidity: function id() view returns(uint256)
 func (_Stream *StreamCaller) Id(opts *bind.CallOpts) (*big.Int, error) {
 	var (
 		ret0 = new(*big.Int)
@@ -587,21 +586,21 @@ func (_Stream *StreamCaller) Id(opts *bind.CallOpts) (*big.Int, error) {
 
 // Id is a free data retrieval call binding the contract method 0xaf640d0f.
 //
-// Solidity: function id() constant returns(uint256)
+// Solidity: function id() view returns(uint256)
 func (_Stream *StreamSession) Id() (*big.Int, error) {
 	return _Stream.Contract.Id(&_Stream.CallOpts)
 }
 
 // Id is a free data retrieval call binding the contract method 0xaf640d0f.
 //
-// Solidity: function id() constant returns(uint256)
+// Solidity: function id() view returns(uint256)
 func (_Stream *StreamCallerSession) Id() (*big.Int, error) {
 	return _Stream.Contract.Id(&_Stream.CallOpts)
 }
 
 // IsChunk is a free data retrieval call binding the contract method 0x1bb62fc4.
 //
-// Solidity: function isChunk(uint256 ) constant returns(bool)
+// Solidity: function isChunk(uint256 ) view returns(bool)
 func (_Stream *StreamCaller) IsChunk(opts *bind.CallOpts, arg0 *big.Int) (bool, error) {
 	var (
 		ret0 = new(bool)
@@ -613,21 +612,21 @@ func (_Stream *StreamCaller) IsChunk(opts *bind.CallOpts, arg0 *big.Int) (bool, 
 
 // IsChunk is a free data retrieval call binding the contract method 0x1bb62fc4.
 //
-// Solidity: function isChunk(uint256 ) constant returns(bool)
+// Solidity: function isChunk(uint256 ) view returns(bool)
 func (_Stream *StreamSession) IsChunk(arg0 *big.Int) (bool, error) {
 	return _Stream.Contract.IsChunk(&_Stream.CallOpts, arg0)
 }
 
 // IsChunk is a free data retrieval call binding the contract method 0x1bb62fc4.
 //
-// Solidity: function isChunk(uint256 ) constant returns(bool)
+// Solidity: function isChunk(uint256 ) view returns(bool)
 func (_Stream *StreamCallerSession) IsChunk(arg0 *big.Int) (bool, error) {
 	return _Stream.Contract.IsChunk(&_Stream.CallOpts, arg0)
 }
 
 // IsProfileTranscoded is a free data retrieval call binding the contract method 0x1f54e5bd.
 //
-// Solidity: function isProfileTranscoded(uint256 profile) constant returns(bool)
+// Solidity: function isProfileTranscoded(uint256 profile) view returns(bool)
 func (_Stream *StreamCaller) IsProfileTranscoded(opts *bind.CallOpts, profile *big.Int) (bool, error) {
 	var (
 		ret0 = new(bool)
@@ -639,21 +638,21 @@ func (_Stream *StreamCaller) IsProfileTranscoded(opts *bind.CallOpts, profile *b
 
 // IsProfileTranscoded is a free data retrieval call binding the contract method 0x1f54e5bd.
 //
-// Solidity: function isProfileTranscoded(uint256 profile) constant returns(bool)
+// Solidity: function isProfileTranscoded(uint256 profile) view returns(bool)
 func (_Stream *StreamSession) IsProfileTranscoded(profile *big.Int) (bool, error) {
 	return _Stream.Contract.IsProfileTranscoded(&_Stream.CallOpts, profile)
 }
 
 // IsProfileTranscoded is a free data retrieval call binding the contract method 0x1f54e5bd.
 //
-// Solidity: function isProfileTranscoded(uint256 profile) constant returns(bool)
+// Solidity: function isProfileTranscoded(uint256 profile) view returns(bool)
 func (_Stream *StreamCallerSession) IsProfileTranscoded(profile *big.Int) (bool, error) {
 	return _Stream.Contract.IsProfileTranscoded(&_Stream.CallOpts, profile)
 }
 
 // IsTranscodingDone is a free data retrieval call binding the contract method 0xfc1028bc.
 //
-// Solidity: function isTranscodingDone() constant returns(bool)
+// Solidity: function isTranscodingDone() view returns(bool)
 func (_Stream *StreamCaller) IsTranscodingDone(opts *bind.CallOpts) (bool, error) {
 	var (
 		ret0 = new(bool)
@@ -665,21 +664,21 @@ func (_Stream *StreamCaller) IsTranscodingDone(opts *bind.CallOpts) (bool, error
 
 // IsTranscodingDone is a free data retrieval call binding the contract method 0xfc1028bc.
 //
-// Solidity: function isTranscodingDone() constant returns(bool)
+// Solidity: function isTranscodingDone() view returns(bool)
 func (_Stream *StreamSession) IsTranscodingDone() (bool, error) {
 	return _Stream.Contract.IsTranscodingDone(&_Stream.CallOpts)
 }
 
 // IsTranscodingDone is a free data retrieval call binding the contract method 0xfc1028bc.
 //
-// Solidity: function isTranscodingDone() constant returns(bool)
+// Solidity: function isTranscodingDone() view returns(bool)
 func (_Stream *StreamCallerSession) IsTranscodingDone() (bool, error) {
 	return _Stream.Contract.IsTranscodingDone(&_Stream.CallOpts)
 }
 
 // Manager is a free data retrieval call binding the contract method 0x481c6a75.
 //
-// Solidity: function manager() constant returns(address)
+// Solidity: function manager() view returns(address)
 func (_Stream *StreamCaller) Manager(opts *bind.CallOpts) (common.Address, error) {
 	var (
 		ret0 = new(common.Address)
@@ -691,21 +690,21 @@ func (_Stream *StreamCaller) Manager(opts *bind.CallOpts) (common.Address, error
 
 // Manager is a free data retrieval call binding the contract method 0x481c6a75.
 //
-// Solidity: function manager() constant returns(address)
+// Solidity: function manager() view returns(address)
 func (_Stream *StreamSession) Manager() (common.Address, error) {
 	return _Stream.Contract.Manager(&_Stream.CallOpts)
 }
 
 // Manager is a free data retrieval call binding the contract method 0x481c6a75.
 //
-// Solidity: function manager() constant returns(address)
+// Solidity: function manager() view returns(address)
 func (_Stream *StreamCallerSession) Manager() (common.Address, error) {
 	return _Stream.Contract.Manager(&_Stream.CallOpts)
 }
 
 // OutStreams is a free data retrieval call binding the contract method 0xc5d0b14c.
 //
-// Solidity: function outStreams(uint256 ) constant returns(bool required, uint256 index, uint256 validatedChunks)
+// Solidity: function outStreams(uint256 ) view returns(bool required, uint256 index, uint256 validatedChunks)
 func (_Stream *StreamCaller) OutStreams(opts *bind.CallOpts, arg0 *big.Int) (struct {
 	Required        bool
 	Index           *big.Int
@@ -723,7 +722,7 @@ func (_Stream *StreamCaller) OutStreams(opts *bind.CallOpts, arg0 *big.Int) (str
 
 // OutStreams is a free data retrieval call binding the contract method 0xc5d0b14c.
 //
-// Solidity: function outStreams(uint256 ) constant returns(bool required, uint256 index, uint256 validatedChunks)
+// Solidity: function outStreams(uint256 ) view returns(bool required, uint256 index, uint256 validatedChunks)
 func (_Stream *StreamSession) OutStreams(arg0 *big.Int) (struct {
 	Required        bool
 	Index           *big.Int
@@ -734,7 +733,7 @@ func (_Stream *StreamSession) OutStreams(arg0 *big.Int) (struct {
 
 // OutStreams is a free data retrieval call binding the contract method 0xc5d0b14c.
 //
-// Solidity: function outStreams(uint256 ) constant returns(bool required, uint256 index, uint256 validatedChunks)
+// Solidity: function outStreams(uint256 ) view returns(bool required, uint256 index, uint256 validatedChunks)
 func (_Stream *StreamCallerSession) OutStreams(arg0 *big.Int) (struct {
 	Required        bool
 	Index           *big.Int
@@ -745,7 +744,7 @@ func (_Stream *StreamCallerSession) OutStreams(arg0 *big.Int) (struct {
 
 // RefundAllowed is a free data retrieval call binding the contract method 0x3fa911ae.
 //
-// Solidity: function refundAllowed() constant returns(bool)
+// Solidity: function refundAllowed() view returns(bool)
 func (_Stream *StreamCaller) RefundAllowed(opts *bind.CallOpts) (bool, error) {
 	var (
 		ret0 = new(bool)
@@ -757,21 +756,21 @@ func (_Stream *StreamCaller) RefundAllowed(opts *bind.CallOpts) (bool, error) {
 
 // RefundAllowed is a free data retrieval call binding the contract method 0x3fa911ae.
 //
-// Solidity: function refundAllowed() constant returns(bool)
+// Solidity: function refundAllowed() view returns(bool)
 func (_Stream *StreamSession) RefundAllowed() (bool, error) {
 	return _Stream.Contract.RefundAllowed(&_Stream.CallOpts)
 }
 
 // RefundAllowed is a free data retrieval call binding the contract method 0x3fa911ae.
 //
-// Solidity: function refundAllowed() constant returns(bool)
+// Solidity: function refundAllowed() view returns(bool)
 func (_Stream *StreamCallerSession) RefundAllowed() (bool, error) {
 	return _Stream.Contract.RefundAllowed(&_Stream.CallOpts)
 }
 
 // Wattages is a free data retrieval call binding the contract method 0xeda0ce17.
 //
-// Solidity: function wattages(uint256 , uint256 ) constant returns(uint256)
+// Solidity: function wattages(uint256 , uint256 ) view returns(uint256)
 func (_Stream *StreamCaller) Wattages(opts *bind.CallOpts, arg0 *big.Int, arg1 *big.Int) (*big.Int, error) {
 	var (
 		ret0 = new(*big.Int)
@@ -783,14 +782,14 @@ func (_Stream *StreamCaller) Wattages(opts *bind.CallOpts, arg0 *big.Int, arg1 *
 
 // Wattages is a free data retrieval call binding the contract method 0xeda0ce17.
 //
-// Solidity: function wattages(uint256 , uint256 ) constant returns(uint256)
+// Solidity: function wattages(uint256 , uint256 ) view returns(uint256)
 func (_Stream *StreamSession) Wattages(arg0 *big.Int, arg1 *big.Int) (*big.Int, error) {
 	return _Stream.Contract.Wattages(&_Stream.CallOpts, arg0, arg1)
 }
 
 // Wattages is a free data retrieval call binding the contract method 0xeda0ce17.
 //
-// Solidity: function wattages(uint256 , uint256 ) constant returns(uint256)
+// Solidity: function wattages(uint256 , uint256 ) view returns(uint256)
 func (_Stream *StreamCallerSession) Wattages(arg0 *big.Int, arg1 *big.Int) (*big.Int, error) {
 	return _Stream.Contract.Wattages(&_Stream.CallOpts, arg0, arg1)
 }
@@ -818,21 +817,21 @@ func (_Stream *StreamTransactorSession) AddInputChunkId(chunkId *big.Int, wattag
 
 // Deposit is a paid mutator transaction binding the contract method 0xd0e30db0.
 //
-// Solidity: function deposit() returns()
+// Solidity: function deposit() payable returns()
 func (_Stream *StreamTransactor) Deposit(opts *bind.TransactOpts) (*types.Transaction, error) {
 	return _Stream.contract.Transact(opts, "deposit")
 }
 
 // Deposit is a paid mutator transaction binding the contract method 0xd0e30db0.
 //
-// Solidity: function deposit() returns()
+// Solidity: function deposit() payable returns()
 func (_Stream *StreamSession) Deposit() (*types.Transaction, error) {
 	return _Stream.Contract.Deposit(&_Stream.TransactOpts)
 }
 
 // Deposit is a paid mutator transaction binding the contract method 0xd0e30db0.
 //
-// Solidity: function deposit() returns()
+// Solidity: function deposit() payable returns()
 func (_Stream *StreamTransactorSession) Deposit() (*types.Transaction, error) {
 	return _Stream.Contract.Deposit(&_Stream.TransactOpts)
 }
