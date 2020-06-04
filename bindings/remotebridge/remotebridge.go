@@ -20,7 +20,6 @@ var (
 	_ = big.NewInt
 	_ = strings.NewReader
 	_ = ethereum.NotFound
-	_ = abi.U256
 	_ = bind.Bind
 	_ = common.Big1
 	_ = types.BloomLookup
@@ -28,10 +27,10 @@ var (
 )
 
 // RemoteBridgeABI is the input ABI used to generate the binding from.
-const RemoteBridgeABI = "[{\"inputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"previousOwner\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"OwnershipTransferred\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"hash\",\"type\":\"bytes32\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"signer\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint64\",\"name\":\"nonce\",\"type\":\"uint64\"}],\"name\":\"TransferRegistered\",\"type\":\"event\"},{\"constant\":true,\"inputs\":[],\"name\":\"getLastBlock\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"isOwner\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"local\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"remote\",\"type\":\"bytes32\"},{\"internalType\":\"address\",\"name\":\"signer\",\"type\":\"address\"},{\"internalType\":\"uint64\",\"name\":\"nonce\",\"type\":\"uint64\"}],\"name\":\"register\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[],\"name\":\"renounceOwnership\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"lastBlock\",\"type\":\"uint256\"}],\"name\":\"setLastBlock\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"transferOwnership\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"name\":\"transfers\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"hash\",\"type\":\"bytes32\"},{\"internalType\":\"address\",\"name\":\"signer\",\"type\":\"address\"},{\"internalType\":\"uint64\",\"name\":\"nonce\",\"type\":\"uint64\"},{\"internalType\":\"bool\",\"name\":\"exist\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"local\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"remote\",\"type\":\"bytes32\"}],\"name\":\"update\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"version\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"}]"
+const RemoteBridgeABI = "[{\"inputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"previousOwner\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"OwnershipTransferred\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"hash\",\"type\":\"bytes32\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"signer\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint64\",\"name\":\"nonce\",\"type\":\"uint64\"}],\"name\":\"TransferRegistered\",\"type\":\"event\"},{\"constant\":true,\"inputs\":[],\"name\":\"getLastBlock\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"isOwner\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"local\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"remote\",\"type\":\"bytes32\"},{\"internalType\":\"address\",\"name\":\"signer\",\"type\":\"address\"},{\"internalType\":\"uint64\",\"name\":\"nonce\",\"type\":\"uint64\"}],\"name\":\"register\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[],\"name\":\"renounceOwnership\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"lastBlock\",\"type\":\"uint256\"}],\"name\":\"setLastBlock\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"transferOwnership\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"name\":\"transfers\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"hash\",\"type\":\"bytes32\"},{\"internalType\":\"address\",\"name\":\"signer\",\"type\":\"address\"},{\"internalType\":\"uint64\",\"name\":\"nonce\",\"type\":\"uint64\"},{\"internalType\":\"bool\",\"name\":\"exist\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"local\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"remote\",\"type\":\"bytes32\"}],\"name\":\"update\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"}]"
 
 // RemoteBridgeBin is the compiled bytecode used for deploying new contracts.
-var RemoteBridgeBin = "0x608060405234801561001057600080fd5b5060006100216100c460201b60201c565b9050806000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055508073ffffffffffffffffffffffffffffffffffffffff16600073ffffffffffffffffffffffffffffffffffffffff167f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e060405160405180910390a3506100cc565b600033905090565b610f19806100db6000396000f3fe608060405234801561001057600080fd5b506004361061009e5760003560e01c80637f2c4ca8116100665780637f2c4ca8146101365780638da5cb5b146101545780638f32d59b14610172578063efcb64cb14610190578063f2fde38b146101ac5761009e565b806313f57c3e146100a35780633c64f04b146100bf57806354fd4d50146100f25780635d974a6614610110578063715018a61461012c575b600080fd5b6100bd60048036036100b891908101906109ef565b6101c8565b005b6100d960048036036100d491908101906109c6565b610334565b6040516100e99493929190610c97565b60405180910390f35b6100fa6103a5565b6040516101079190610cdc565b60405180910390f35b61012a60048036036101259190810190610a8e565b6103de565b005b61013461042f565b005b61013e610535565b60405161014b9190610d7e565b60405180910390f35b61015c61053f565b6040516101699190610c61565b60405180910390f35b61017a610568565b6040516101879190610c7c565b60405180910390f35b6101aa60048036036101a59190810190610a2b565b6105c6565b005b6101c660048036036101c1919081019061099d565b6107c0565b005b6101d0610568565b61020f576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040161020690610d5e565b60405180910390fd5b60026000838152602001908152602001600020600101601c9054906101000a900460ff16610272576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040161026990610d3e565b60405180910390fd5b80600260008481526020019081526020016000206000018190555060006002600084815260200190815260200160002090508060010160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16827ff323e3760341eb70d636a6304f7927d4ba8c42e4e8777d908098205ad3c8f49c8360010160149054906101000a900467ffffffffffffffff166040516103279190610d99565b60405180910390a3505050565b60026020528060005260406000206000915090508060000154908060010160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff16908060010160149054906101000a900467ffffffffffffffff169080600101601c9054906101000a900460ff16905084565b6040518060400160405280601381526020017f7374756220393939392e393939392e393939390000000000000000000000000081525081565b6103e6610568565b610425576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040161041c90610d5e565b60405180910390fd5b8060018190555050565b610437610568565b610476576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040161046d90610d5e565b60405180910390fd5b600073ffffffffffffffffffffffffffffffffffffffff166000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff167f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e060405160405180910390a360008060006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff160217905550565b6000600154905090565b60008060009054906101000a900473ffffffffffffffffffffffffffffffffffffffff16905090565b60008060009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff166105aa610813565b73ffffffffffffffffffffffffffffffffffffffff1614905090565b6105ce610568565b61060d576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040161060490610d5e565b60405180910390fd5b60026000858152602001908152602001600020600101601c9054906101000a900460ff1615610671576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040161066890610d1e565b60405180910390fd5b60405180608001604052808481526020018373ffffffffffffffffffffffffffffffffffffffff1681526020018267ffffffffffffffff16815260200160011515815250600260008681526020019081526020016000206000820151816000015560208201518160010160006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff16021790555060408201518160010160146101000a81548167ffffffffffffffff021916908367ffffffffffffffff160217905550606082015181600101601c6101000a81548160ff0219169083151502179055509050508173ffffffffffffffffffffffffffffffffffffffff16837ff323e3760341eb70d636a6304f7927d4ba8c42e4e8777d908098205ad3c8f49c836040516107b29190610d99565b60405180910390a350505050565b6107c8610568565b610807576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004016107fe90610d5e565b60405180910390fd5b6108108161081b565b50565b600033905090565b600073ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff16141561088b576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040161088290610cfe565b60405180910390fd5b8073ffffffffffffffffffffffffffffffffffffffff166000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff167f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e060405160405180910390a3806000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff16021790555050565b60008135905061095881610e7a565b92915050565b60008135905061096d81610e91565b92915050565b60008135905061098281610ea8565b92915050565b60008135905061099781610ebf565b92915050565b6000602082840312156109af57600080fd5b60006109bd84828501610949565b91505092915050565b6000602082840312156109d857600080fd5b60006109e68482850161095e565b91505092915050565b60008060408385031215610a0257600080fd5b6000610a108582860161095e565b9250506020610a218582860161095e565b9150509250929050565b60008060008060808587031215610a4157600080fd5b6000610a4f8782880161095e565b9450506020610a608782880161095e565b9350506040610a7187828801610949565b9250506060610a8287828801610988565b91505092959194509250565b600060208284031215610aa057600080fd5b6000610aae84828501610973565b91505092915050565b610ac081610dd0565b82525050565b610acf81610de2565b82525050565b610ade81610dee565b82525050565b6000610aef82610db4565b610af98185610dbf565b9350610b09818560208601610e36565b610b1281610e69565b840191505092915050565b6000610b2a602683610dbf565b91507f4f776e61626c653a206e6577206f776e657220697320746865207a65726f206160008301527f64647265737300000000000000000000000000000000000000000000000000006020830152604082019050919050565b6000610b90601b83610dbf565b91507f7472616e7366657220616c7265616479207265676973746572656400000000006000830152602082019050919050565b6000610bd0601783610dbf565b91507f7472616e73666572206e6f7420726567697374657265640000000000000000006000830152602082019050919050565b6000610c10602083610dbf565b91507f4f776e61626c653a2063616c6c6572206973206e6f7420746865206f776e65726000830152602082019050919050565b610c4c81610e18565b82525050565b610c5b81610e22565b82525050565b6000602082019050610c766000830184610ab7565b92915050565b6000602082019050610c916000830184610ac6565b92915050565b6000608082019050610cac6000830187610ad5565b610cb96020830186610ab7565b610cc66040830185610c52565b610cd36060830184610ac6565b95945050505050565b60006020820190508181036000830152610cf68184610ae4565b905092915050565b60006020820190508181036000830152610d1781610b1d565b9050919050565b60006020820190508181036000830152610d3781610b83565b9050919050565b60006020820190508181036000830152610d5781610bc3565b9050919050565b60006020820190508181036000830152610d7781610c03565b9050919050565b6000602082019050610d936000830184610c43565b92915050565b6000602082019050610dae6000830184610c52565b92915050565b600081519050919050565b600082825260208201905092915050565b6000610ddb82610df8565b9050919050565b60008115159050919050565b6000819050919050565b600073ffffffffffffffffffffffffffffffffffffffff82169050919050565b6000819050919050565b600067ffffffffffffffff82169050919050565b60005b83811015610e54578082015181840152602081019050610e39565b83811115610e63576000848401525b50505050565b6000601f19601f8301169050919050565b610e8381610dd0565b8114610e8e57600080fd5b50565b610e9a81610dee565b8114610ea557600080fd5b50565b610eb181610e18565b8114610ebc57600080fd5b50565b610ec881610e22565b8114610ed357600080fd5b5056fea365627a7a72315820c2e4622f99aea025976965bc18df0b09f661c9cd382ae72ad2d6ef6c986c28b86c6578706572696d656e74616cf564736f6c634300050d0040"
+var RemoteBridgeBin = "0x608060405234801561001057600080fd5b5060006100216100c460201b60201c565b9050806000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055508073ffffffffffffffffffffffffffffffffffffffff16600073ffffffffffffffffffffffffffffffffffffffff167f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e060405160405180910390a3506100cc565b600033905090565b610e0d806100db6000396000f3fe608060405234801561001057600080fd5b50600436106100935760003560e01c80637f2c4ca8116100665780637f2c4ca81461010d5780638da5cb5b1461012b5780638f32d59b14610149578063efcb64cb14610167578063f2fde38b1461018357610093565b806313f57c3e146100985780633c64f04b146100b45780635d974a66146100e7578063715018a614610103575b600080fd5b6100b260048036036100ad919081019061098d565b61019f565b005b6100ce60048036036100c99190810190610964565b61030b565b6040516100de9493929190610bfc565b60405180910390f35b61010160048036036100fc9190810190610a2c565b61037c565b005b61010b6103cd565b005b6101156104d3565b6040516101229190610cc1565b60405180910390f35b6101336104dd565b6040516101409190610bc6565b60405180910390f35b610151610506565b60405161015e9190610be1565b60405180910390f35b610181600480360361017c91908101906109c9565b610564565b005b61019d6004803603610198919081019061093b565b61075e565b005b6101a7610506565b6101e6576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004016101dd90610ca1565b60405180910390fd5b60026000838152602001908152602001600020600101601c9054906101000a900460ff16610249576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040161024090610c81565b60405180910390fd5b80600260008481526020019081526020016000206000018190555060006002600084815260200190815260200160002090508060010160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16827ff323e3760341eb70d636a6304f7927d4ba8c42e4e8777d908098205ad3c8f49c8360010160149054906101000a900467ffffffffffffffff166040516102fe9190610cdc565b60405180910390a3505050565b60026020528060005260406000206000915090508060000154908060010160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff16908060010160149054906101000a900467ffffffffffffffff169080600101601c9054906101000a900460ff16905084565b610384610506565b6103c3576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004016103ba90610ca1565b60405180910390fd5b8060018190555050565b6103d5610506565b610414576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040161040b90610ca1565b60405180910390fd5b600073ffffffffffffffffffffffffffffffffffffffff166000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff167f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e060405160405180910390a360008060006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff160217905550565b6000600154905090565b60008060009054906101000a900473ffffffffffffffffffffffffffffffffffffffff16905090565b60008060009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff166105486107b1565b73ffffffffffffffffffffffffffffffffffffffff1614905090565b61056c610506565b6105ab576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004016105a290610ca1565b60405180910390fd5b60026000858152602001908152602001600020600101601c9054906101000a900460ff161561060f576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040161060690610c61565b60405180910390fd5b60405180608001604052808481526020018373ffffffffffffffffffffffffffffffffffffffff1681526020018267ffffffffffffffff16815260200160011515815250600260008681526020019081526020016000206000820151816000015560208201518160010160006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff16021790555060408201518160010160146101000a81548167ffffffffffffffff021916908367ffffffffffffffff160217905550606082015181600101601c6101000a81548160ff0219169083151502179055509050508173ffffffffffffffffffffffffffffffffffffffff16837ff323e3760341eb70d636a6304f7927d4ba8c42e4e8777d908098205ad3c8f49c836040516107509190610cdc565b60405180910390a350505050565b610766610506565b6107a5576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040161079c90610ca1565b60405180910390fd5b6107ae816107b9565b50565b600033905090565b600073ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff161415610829576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040161082090610c41565b60405180910390fd5b8073ffffffffffffffffffffffffffffffffffffffff166000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff167f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e060405160405180910390a3806000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff16021790555050565b6000813590506108f681610d6e565b92915050565b60008135905061090b81610d85565b92915050565b60008135905061092081610d9c565b92915050565b60008135905061093581610db3565b92915050565b60006020828403121561094d57600080fd5b600061095b848285016108e7565b91505092915050565b60006020828403121561097657600080fd5b6000610984848285016108fc565b91505092915050565b600080604083850312156109a057600080fd5b60006109ae858286016108fc565b92505060206109bf858286016108fc565b9150509250929050565b600080600080608085870312156109df57600080fd5b60006109ed878288016108fc565b94505060206109fe878288016108fc565b9350506040610a0f878288016108e7565b9250506060610a2087828801610926565b91505092959194509250565b600060208284031215610a3e57600080fd5b6000610a4c84828501610911565b91505092915050565b610a5e81610d08565b82525050565b610a6d81610d1a565b82525050565b610a7c81610d26565b82525050565b6000610a8f602683610cf7565b91507f4f776e61626c653a206e6577206f776e657220697320746865207a65726f206160008301527f64647265737300000000000000000000000000000000000000000000000000006020830152604082019050919050565b6000610af5601b83610cf7565b91507f7472616e7366657220616c7265616479207265676973746572656400000000006000830152602082019050919050565b6000610b35601783610cf7565b91507f7472616e73666572206e6f7420726567697374657265640000000000000000006000830152602082019050919050565b6000610b75602083610cf7565b91507f4f776e61626c653a2063616c6c6572206973206e6f7420746865206f776e65726000830152602082019050919050565b610bb181610d50565b82525050565b610bc081610d5a565b82525050565b6000602082019050610bdb6000830184610a55565b92915050565b6000602082019050610bf66000830184610a64565b92915050565b6000608082019050610c116000830187610a73565b610c1e6020830186610a55565b610c2b6040830185610bb7565b610c386060830184610a64565b95945050505050565b60006020820190508181036000830152610c5a81610a82565b9050919050565b60006020820190508181036000830152610c7a81610ae8565b9050919050565b60006020820190508181036000830152610c9a81610b28565b9050919050565b60006020820190508181036000830152610cba81610b68565b9050919050565b6000602082019050610cd66000830184610ba8565b92915050565b6000602082019050610cf16000830184610bb7565b92915050565b600082825260208201905092915050565b6000610d1382610d30565b9050919050565b60008115159050919050565b6000819050919050565b600073ffffffffffffffffffffffffffffffffffffffff82169050919050565b6000819050919050565b600067ffffffffffffffff82169050919050565b610d7781610d08565b8114610d8257600080fd5b50565b610d8e81610d26565b8114610d9957600080fd5b50565b610da581610d50565b8114610db057600080fd5b50565b610dbc81610d5a565b8114610dc757600080fd5b5056fea365627a7a723158203e75e1fe434bfb043be635b73a5990e7aa5d0d49706b0da9ed37d9746e7c3c316c6578706572696d656e74616cf564736f6c634300050d0040"
 
 // DeployRemoteBridge deploys a new Ethereum contract, binding an instance of RemoteBridge to it.
 func DeployRemoteBridge(auth *bind.TransactOpts, backend bind.ContractBackend) (common.Address, *types.Transaction, *RemoteBridge, error) {
@@ -191,7 +190,7 @@ func (_RemoteBridge *RemoteBridgeTransactorRaw) Transact(opts *bind.TransactOpts
 
 // GetLastBlock is a free data retrieval call binding the contract method 0x7f2c4ca8.
 //
-// Solidity: function getLastBlock() constant returns(uint256)
+// Solidity: function getLastBlock() view returns(uint256)
 func (_RemoteBridge *RemoteBridgeCaller) GetLastBlock(opts *bind.CallOpts) (*big.Int, error) {
 	var (
 		ret0 = new(*big.Int)
@@ -203,21 +202,21 @@ func (_RemoteBridge *RemoteBridgeCaller) GetLastBlock(opts *bind.CallOpts) (*big
 
 // GetLastBlock is a free data retrieval call binding the contract method 0x7f2c4ca8.
 //
-// Solidity: function getLastBlock() constant returns(uint256)
+// Solidity: function getLastBlock() view returns(uint256)
 func (_RemoteBridge *RemoteBridgeSession) GetLastBlock() (*big.Int, error) {
 	return _RemoteBridge.Contract.GetLastBlock(&_RemoteBridge.CallOpts)
 }
 
 // GetLastBlock is a free data retrieval call binding the contract method 0x7f2c4ca8.
 //
-// Solidity: function getLastBlock() constant returns(uint256)
+// Solidity: function getLastBlock() view returns(uint256)
 func (_RemoteBridge *RemoteBridgeCallerSession) GetLastBlock() (*big.Int, error) {
 	return _RemoteBridge.Contract.GetLastBlock(&_RemoteBridge.CallOpts)
 }
 
 // IsOwner is a free data retrieval call binding the contract method 0x8f32d59b.
 //
-// Solidity: function isOwner() constant returns(bool)
+// Solidity: function isOwner() view returns(bool)
 func (_RemoteBridge *RemoteBridgeCaller) IsOwner(opts *bind.CallOpts) (bool, error) {
 	var (
 		ret0 = new(bool)
@@ -229,21 +228,21 @@ func (_RemoteBridge *RemoteBridgeCaller) IsOwner(opts *bind.CallOpts) (bool, err
 
 // IsOwner is a free data retrieval call binding the contract method 0x8f32d59b.
 //
-// Solidity: function isOwner() constant returns(bool)
+// Solidity: function isOwner() view returns(bool)
 func (_RemoteBridge *RemoteBridgeSession) IsOwner() (bool, error) {
 	return _RemoteBridge.Contract.IsOwner(&_RemoteBridge.CallOpts)
 }
 
 // IsOwner is a free data retrieval call binding the contract method 0x8f32d59b.
 //
-// Solidity: function isOwner() constant returns(bool)
+// Solidity: function isOwner() view returns(bool)
 func (_RemoteBridge *RemoteBridgeCallerSession) IsOwner() (bool, error) {
 	return _RemoteBridge.Contract.IsOwner(&_RemoteBridge.CallOpts)
 }
 
 // Owner is a free data retrieval call binding the contract method 0x8da5cb5b.
 //
-// Solidity: function owner() constant returns(address)
+// Solidity: function owner() view returns(address)
 func (_RemoteBridge *RemoteBridgeCaller) Owner(opts *bind.CallOpts) (common.Address, error) {
 	var (
 		ret0 = new(common.Address)
@@ -255,21 +254,21 @@ func (_RemoteBridge *RemoteBridgeCaller) Owner(opts *bind.CallOpts) (common.Addr
 
 // Owner is a free data retrieval call binding the contract method 0x8da5cb5b.
 //
-// Solidity: function owner() constant returns(address)
+// Solidity: function owner() view returns(address)
 func (_RemoteBridge *RemoteBridgeSession) Owner() (common.Address, error) {
 	return _RemoteBridge.Contract.Owner(&_RemoteBridge.CallOpts)
 }
 
 // Owner is a free data retrieval call binding the contract method 0x8da5cb5b.
 //
-// Solidity: function owner() constant returns(address)
+// Solidity: function owner() view returns(address)
 func (_RemoteBridge *RemoteBridgeCallerSession) Owner() (common.Address, error) {
 	return _RemoteBridge.Contract.Owner(&_RemoteBridge.CallOpts)
 }
 
 // Transfers is a free data retrieval call binding the contract method 0x3c64f04b.
 //
-// Solidity: function transfers(bytes32 ) constant returns(bytes32 hash, address signer, uint64 nonce, bool exist)
+// Solidity: function transfers(bytes32 ) view returns(bytes32 hash, address signer, uint64 nonce, bool exist)
 func (_RemoteBridge *RemoteBridgeCaller) Transfers(opts *bind.CallOpts, arg0 [32]byte) (struct {
 	Hash   [32]byte
 	Signer common.Address
@@ -289,7 +288,7 @@ func (_RemoteBridge *RemoteBridgeCaller) Transfers(opts *bind.CallOpts, arg0 [32
 
 // Transfers is a free data retrieval call binding the contract method 0x3c64f04b.
 //
-// Solidity: function transfers(bytes32 ) constant returns(bytes32 hash, address signer, uint64 nonce, bool exist)
+// Solidity: function transfers(bytes32 ) view returns(bytes32 hash, address signer, uint64 nonce, bool exist)
 func (_RemoteBridge *RemoteBridgeSession) Transfers(arg0 [32]byte) (struct {
 	Hash   [32]byte
 	Signer common.Address
@@ -301,7 +300,7 @@ func (_RemoteBridge *RemoteBridgeSession) Transfers(arg0 [32]byte) (struct {
 
 // Transfers is a free data retrieval call binding the contract method 0x3c64f04b.
 //
-// Solidity: function transfers(bytes32 ) constant returns(bytes32 hash, address signer, uint64 nonce, bool exist)
+// Solidity: function transfers(bytes32 ) view returns(bytes32 hash, address signer, uint64 nonce, bool exist)
 func (_RemoteBridge *RemoteBridgeCallerSession) Transfers(arg0 [32]byte) (struct {
 	Hash   [32]byte
 	Signer common.Address
@@ -309,32 +308,6 @@ func (_RemoteBridge *RemoteBridgeCallerSession) Transfers(arg0 [32]byte) (struct
 	Exist  bool
 }, error) {
 	return _RemoteBridge.Contract.Transfers(&_RemoteBridge.CallOpts, arg0)
-}
-
-// Version is a free data retrieval call binding the contract method 0x54fd4d50.
-//
-// Solidity: function version() constant returns(string)
-func (_RemoteBridge *RemoteBridgeCaller) Version(opts *bind.CallOpts) (string, error) {
-	var (
-		ret0 = new(string)
-	)
-	out := ret0
-	err := _RemoteBridge.contract.Call(opts, out, "version")
-	return *ret0, err
-}
-
-// Version is a free data retrieval call binding the contract method 0x54fd4d50.
-//
-// Solidity: function version() constant returns(string)
-func (_RemoteBridge *RemoteBridgeSession) Version() (string, error) {
-	return _RemoteBridge.Contract.Version(&_RemoteBridge.CallOpts)
-}
-
-// Version is a free data retrieval call binding the contract method 0x54fd4d50.
-//
-// Solidity: function version() constant returns(string)
-func (_RemoteBridge *RemoteBridgeCallerSession) Version() (string, error) {
-	return _RemoteBridge.Contract.Version(&_RemoteBridge.CallOpts)
 }
 
 // Register is a paid mutator transaction binding the contract method 0xefcb64cb.
