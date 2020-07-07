@@ -32,6 +32,7 @@ dirs:
 	mkdir -p bindings/stakingescrow
 	mkdir -p bindings/casstaking
 	mkdir -p bindings/testerc
+	mkdir -p bindings/batchtransfer
 
 .PHONY: libs
 libs:
@@ -66,6 +67,7 @@ bindings: dirs abi bin
 	${CODEGEN_DOCKER} --bin bin/StakingEscrow.bin --abi abi/StakingEscrow.abi --pkg stakingescrow --type StakingEscrow --out bindings/stakingescrow/escrow.go
 	${CODEGEN_DOCKER} --bin bin/TestERC.bin --abi abi/TestERC.abi --pkg testerc --type TestERC --out bindings/testerc/erc.go
 	${CODEGEN_DOCKER} --bin bin/CASStaking.bin --abi abi/CASStaking.abi --pkg casstaking --type CASStaking --out bindings/casstaking/cas.go
+	${CODEGEN_DOCKER} --bin bin/BatchTransfer.bin --abi abi/BatchTransfer.abi --pkg batchtransfer --type BatchTransfer --out bindings/batchtransfer/batch.go
 
 	go mod tidy
 
