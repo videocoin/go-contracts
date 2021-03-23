@@ -160,7 +160,7 @@ func bindBatchTransfer(address common.Address, caller bind.ContractCaller, trans
 // sets the output to result. The result type might be a single field for simple
 // returns, a slice of interfaces for anonymous returns and a struct for named
 // returns.
-func (_BatchTransfer *BatchTransferRaw) Call(opts *bind.CallOpts, result interface{}, method string, params ...interface{}) error {
+func (_BatchTransfer *BatchTransferRaw) Call(opts *bind.CallOpts, result *[]interface{}, method string, params ...interface{}) error {
 	return _BatchTransfer.Contract.BatchTransferCaller.contract.Call(opts, result, method, params...)
 }
 
@@ -179,7 +179,7 @@ func (_BatchTransfer *BatchTransferRaw) Transact(opts *bind.TransactOpts, method
 // sets the output to result. The result type might be a single field for simple
 // returns, a slice of interfaces for anonymous returns and a struct for named
 // returns.
-func (_BatchTransfer *BatchTransferCallerRaw) Call(opts *bind.CallOpts, result interface{}, method string, params ...interface{}) error {
+func (_BatchTransfer *BatchTransferCallerRaw) Call(opts *bind.CallOpts, result *[]interface{}, method string, params ...interface{}) error {
 	return _BatchTransfer.Contract.contract.Call(opts, result, method, params...)
 }
 
@@ -196,21 +196,21 @@ func (_BatchTransfer *BatchTransferTransactorRaw) Transact(opts *bind.TransactOp
 
 // Transfer is a paid mutator transaction binding the contract method 0x6331687f.
 //
-// Solidity: function transfer(address token, uint256 total, []BatchTransferTransfer transfers) returns()
+// Solidity: function transfer(address token, uint256 total, (address,uint256)[] transfers) returns()
 func (_BatchTransfer *BatchTransferTransactor) Transfer(opts *bind.TransactOpts, token common.Address, total *big.Int, transfers []BatchTransferTransfer) (*types.Transaction, error) {
 	return _BatchTransfer.contract.Transact(opts, "transfer", token, total, transfers)
 }
 
 // Transfer is a paid mutator transaction binding the contract method 0x6331687f.
 //
-// Solidity: function transfer(address token, uint256 total, []BatchTransferTransfer transfers) returns()
+// Solidity: function transfer(address token, uint256 total, (address,uint256)[] transfers) returns()
 func (_BatchTransfer *BatchTransferSession) Transfer(token common.Address, total *big.Int, transfers []BatchTransferTransfer) (*types.Transaction, error) {
 	return _BatchTransfer.Contract.Transfer(&_BatchTransfer.TransactOpts, token, total, transfers)
 }
 
 // Transfer is a paid mutator transaction binding the contract method 0x6331687f.
 //
-// Solidity: function transfer(address token, uint256 total, []BatchTransferTransfer transfers) returns()
+// Solidity: function transfer(address token, uint256 total, (address,uint256)[] transfers) returns()
 func (_BatchTransfer *BatchTransferTransactorSession) Transfer(token common.Address, total *big.Int, transfers []BatchTransferTransfer) (*types.Transaction, error) {
 	return _BatchTransfer.Contract.Transfer(&_BatchTransfer.TransactOpts, token, total, transfers)
 }
@@ -365,5 +365,6 @@ func (_BatchTransfer *BatchTransferFilterer) ParseBatchedTransfer(log types.Log)
 	if err := _BatchTransfer.contract.UnpackLog(event, "BatchedTransfer", log); err != nil {
 		return nil, err
 	}
+	event.Raw = log
 	return event, nil
 }

@@ -154,7 +154,7 @@ func bindStream(address common.Address, caller bind.ContractCaller, transactor b
 // sets the output to result. The result type might be a single field for simple
 // returns, a slice of interfaces for anonymous returns and a struct for named
 // returns.
-func (_Stream *StreamRaw) Call(opts *bind.CallOpts, result interface{}, method string, params ...interface{}) error {
+func (_Stream *StreamRaw) Call(opts *bind.CallOpts, result *[]interface{}, method string, params ...interface{}) error {
 	return _Stream.Contract.StreamCaller.contract.Call(opts, result, method, params...)
 }
 
@@ -173,7 +173,7 @@ func (_Stream *StreamRaw) Transact(opts *bind.TransactOpts, method string, param
 // sets the output to result. The result type might be a single field for simple
 // returns, a slice of interfaces for anonymous returns and a struct for named
 // returns.
-func (_Stream *StreamCallerRaw) Call(opts *bind.CallOpts, result interface{}, method string, params ...interface{}) error {
+func (_Stream *StreamCallerRaw) Call(opts *bind.CallOpts, result *[]interface{}, method string, params ...interface{}) error {
 	return _Stream.Contract.contract.Call(opts, result, method, params...)
 }
 
@@ -192,12 +192,17 @@ func (_Stream *StreamTransactorRaw) Transact(opts *bind.TransactOpts, method str
 //
 // Solidity: function client() view returns(address)
 func (_Stream *StreamCaller) Client(opts *bind.CallOpts) (common.Address, error) {
-	var (
-		ret0 = new(common.Address)
-	)
-	out := ret0
-	err := _Stream.contract.Call(opts, out, "client")
-	return *ret0, err
+	var out []interface{}
+	err := _Stream.contract.Call(opts, &out, "client")
+
+	if err != nil {
+		return *new(common.Address), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(common.Address)).(*common.Address)
+
+	return out0, err
+
 }
 
 // Client is a free data retrieval call binding the contract method 0x109e94cf.
@@ -218,12 +223,17 @@ func (_Stream *StreamCallerSession) Client() (common.Address, error) {
 //
 // Solidity: function ended() view returns(bool)
 func (_Stream *StreamCaller) Ended(opts *bind.CallOpts) (bool, error) {
-	var (
-		ret0 = new(bool)
-	)
-	out := ret0
-	err := _Stream.contract.Call(opts, out, "ended")
-	return *ret0, err
+	var out []interface{}
+	err := _Stream.contract.Call(opts, &out, "ended")
+
+	if err != nil {
+		return *new(bool), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(bool)).(*bool)
+
+	return out0, err
+
 }
 
 // Ended is a free data retrieval call binding the contract method 0x12fa6feb.
@@ -248,14 +258,24 @@ func (_Stream *StreamCaller) GetCandidateProof(opts *bind.CallOpts, profile *big
 	OutputChunkId *big.Int
 	Proof         *big.Int
 }, error) {
-	ret := new(struct {
+	var out []interface{}
+	err := _Stream.contract.Call(opts, &out, "getCandidateProof", profile, chunkId)
+
+	outstruct := new(struct {
 		Miner         common.Address
 		OutputChunkId *big.Int
 		Proof         *big.Int
 	})
-	out := ret
-	err := _Stream.contract.Call(opts, out, "getCandidateProof", profile, chunkId)
-	return *ret, err
+	if err != nil {
+		return *outstruct, err
+	}
+
+	outstruct.Miner = *abi.ConvertType(out[0], new(common.Address)).(*common.Address)
+	outstruct.OutputChunkId = *abi.ConvertType(out[1], new(*big.Int)).(**big.Int)
+	outstruct.Proof = *abi.ConvertType(out[2], new(*big.Int)).(**big.Int)
+
+	return *outstruct, err
+
 }
 
 // GetCandidateProof is a free data retrieval call binding the contract method 0x2f750f20.
@@ -284,12 +304,17 @@ func (_Stream *StreamCallerSession) GetCandidateProof(profile *big.Int, chunkId 
 //
 // Solidity: function getInChunkCount() view returns(uint256)
 func (_Stream *StreamCaller) GetInChunkCount(opts *bind.CallOpts) (*big.Int, error) {
-	var (
-		ret0 = new(*big.Int)
-	)
-	out := ret0
-	err := _Stream.contract.Call(opts, out, "getInChunkCount")
-	return *ret0, err
+	var out []interface{}
+	err := _Stream.contract.Call(opts, &out, "getInChunkCount")
+
+	if err != nil {
+		return *new(*big.Int), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(*big.Int)).(**big.Int)
+
+	return out0, err
+
 }
 
 // GetInChunkCount is a free data retrieval call binding the contract method 0x73f93b2a.
@@ -310,12 +335,17 @@ func (_Stream *StreamCallerSession) GetInChunkCount() (*big.Int, error) {
 //
 // Solidity: function getInChunks() view returns(uint256[])
 func (_Stream *StreamCaller) GetInChunks(opts *bind.CallOpts) ([]*big.Int, error) {
-	var (
-		ret0 = new([]*big.Int)
-	)
-	out := ret0
-	err := _Stream.contract.Call(opts, out, "getInChunks")
-	return *ret0, err
+	var out []interface{}
+	err := _Stream.contract.Call(opts, &out, "getInChunks")
+
+	if err != nil {
+		return *new([]*big.Int), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new([]*big.Int)).(*[]*big.Int)
+
+	return out0, err
+
 }
 
 // GetInChunks is a free data retrieval call binding the contract method 0xc6175193.
@@ -336,12 +366,17 @@ func (_Stream *StreamCallerSession) GetInChunks() ([]*big.Int, error) {
 //
 // Solidity: function getOutChunks(uint256 profile) view returns(uint256[])
 func (_Stream *StreamCaller) GetOutChunks(opts *bind.CallOpts, profile *big.Int) ([]*big.Int, error) {
-	var (
-		ret0 = new([]*big.Int)
-	)
-	out := ret0
-	err := _Stream.contract.Call(opts, out, "getOutChunks", profile)
-	return *ret0, err
+	var out []interface{}
+	err := _Stream.contract.Call(opts, &out, "getOutChunks", profile)
+
+	if err != nil {
+		return *new([]*big.Int), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new([]*big.Int)).(*[]*big.Int)
+
+	return out0, err
+
 }
 
 // GetOutChunks is a free data retrieval call binding the contract method 0x62372298.
@@ -362,12 +397,17 @@ func (_Stream *StreamCallerSession) GetOutChunks(profile *big.Int) ([]*big.Int, 
 //
 // Solidity: function getProfileCount() view returns(uint256)
 func (_Stream *StreamCaller) GetProfileCount(opts *bind.CallOpts) (*big.Int, error) {
-	var (
-		ret0 = new(*big.Int)
-	)
-	out := ret0
-	err := _Stream.contract.Call(opts, out, "getProfileCount")
-	return *ret0, err
+	var out []interface{}
+	err := _Stream.contract.Call(opts, &out, "getProfileCount")
+
+	if err != nil {
+		return *new(*big.Int), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(*big.Int)).(**big.Int)
+
+	return out0, err
+
 }
 
 // GetProfileCount is a free data retrieval call binding the contract method 0x3697611a.
@@ -392,14 +432,24 @@ func (_Stream *StreamCaller) GetProof(opts *bind.CallOpts, profile *big.Int, chu
 	OutputChunkId *big.Int
 	Proof         *big.Int
 }, error) {
-	ret := new(struct {
+	var out []interface{}
+	err := _Stream.contract.Call(opts, &out, "getProof", profile, chunkId, idx)
+
+	outstruct := new(struct {
 		Miner         common.Address
 		OutputChunkId *big.Int
 		Proof         *big.Int
 	})
-	out := ret
-	err := _Stream.contract.Call(opts, out, "getProof", profile, chunkId, idx)
-	return *ret, err
+	if err != nil {
+		return *outstruct, err
+	}
+
+	outstruct.Miner = *abi.ConvertType(out[0], new(common.Address)).(*common.Address)
+	outstruct.OutputChunkId = *abi.ConvertType(out[1], new(*big.Int)).(**big.Int)
+	outstruct.Proof = *abi.ConvertType(out[2], new(*big.Int)).(**big.Int)
+
+	return *outstruct, err
+
 }
 
 // GetProof is a free data retrieval call binding the contract method 0x28cc413a.
@@ -428,12 +478,17 @@ func (_Stream *StreamCallerSession) GetProof(profile *big.Int, chunkId *big.Int,
 //
 // Solidity: function getProofCount(uint256 profile, uint256 chunkId) view returns(uint256)
 func (_Stream *StreamCaller) GetProofCount(opts *bind.CallOpts, profile *big.Int, chunkId *big.Int) (*big.Int, error) {
-	var (
-		ret0 = new(*big.Int)
-	)
-	out := ret0
-	err := _Stream.contract.Call(opts, out, "getProofCount", profile, chunkId)
-	return *ret0, err
+	var out []interface{}
+	err := _Stream.contract.Call(opts, &out, "getProofCount", profile, chunkId)
+
+	if err != nil {
+		return *new(*big.Int), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(*big.Int)).(**big.Int)
+
+	return out0, err
+
 }
 
 // GetProofCount is a free data retrieval call binding the contract method 0x7b40855d.
@@ -459,15 +514,26 @@ func (_Stream *StreamCaller) GetValidProof(opts *bind.CallOpts, profile *big.Int
 	OutputChunkId *big.Int
 	Proof         *big.Int
 }, error) {
-	ret := new(struct {
+	var out []interface{}
+	err := _Stream.contract.Call(opts, &out, "getValidProof", profile, chunkId)
+
+	outstruct := new(struct {
 		Miner         common.Address
 		Validator     common.Address
 		OutputChunkId *big.Int
 		Proof         *big.Int
 	})
-	out := ret
-	err := _Stream.contract.Call(opts, out, "getValidProof", profile, chunkId)
-	return *ret, err
+	if err != nil {
+		return *outstruct, err
+	}
+
+	outstruct.Miner = *abi.ConvertType(out[0], new(common.Address)).(*common.Address)
+	outstruct.Validator = *abi.ConvertType(out[1], new(common.Address)).(*common.Address)
+	outstruct.OutputChunkId = *abi.ConvertType(out[2], new(*big.Int)).(**big.Int)
+	outstruct.Proof = *abi.ConvertType(out[3], new(*big.Int)).(**big.Int)
+
+	return *outstruct, err
+
 }
 
 // GetValidProof is a free data retrieval call binding the contract method 0xbf032f53.
@@ -498,12 +564,17 @@ func (_Stream *StreamCallerSession) GetValidProof(profile *big.Int, chunkId *big
 //
 // Solidity: function getVersion() view returns(string)
 func (_Stream *StreamCaller) GetVersion(opts *bind.CallOpts) (string, error) {
-	var (
-		ret0 = new(string)
-	)
-	out := ret0
-	err := _Stream.contract.Call(opts, out, "getVersion")
-	return *ret0, err
+	var out []interface{}
+	err := _Stream.contract.Call(opts, &out, "getVersion")
+
+	if err != nil {
+		return *new(string), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(string)).(*string)
+
+	return out0, err
+
 }
 
 // GetVersion is a free data retrieval call binding the contract method 0x0d8e6e2c.
@@ -524,12 +595,17 @@ func (_Stream *StreamCallerSession) GetVersion() (string, error) {
 //
 // Solidity: function getprofiles() view returns(uint256[])
 func (_Stream *StreamCaller) Getprofiles(opts *bind.CallOpts) ([]*big.Int, error) {
-	var (
-		ret0 = new([]*big.Int)
-	)
-	out := ret0
-	err := _Stream.contract.Call(opts, out, "getprofiles")
-	return *ret0, err
+	var out []interface{}
+	err := _Stream.contract.Call(opts, &out, "getprofiles")
+
+	if err != nil {
+		return *new([]*big.Int), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new([]*big.Int)).(*[]*big.Int)
+
+	return out0, err
+
 }
 
 // Getprofiles is a free data retrieval call binding the contract method 0x00ca5d92.
@@ -550,12 +626,17 @@ func (_Stream *StreamCallerSession) Getprofiles() ([]*big.Int, error) {
 //
 // Solidity: function hasValidProof(uint256 profile, uint256 chunkId) view returns(bool)
 func (_Stream *StreamCaller) HasValidProof(opts *bind.CallOpts, profile *big.Int, chunkId *big.Int) (bool, error) {
-	var (
-		ret0 = new(bool)
-	)
-	out := ret0
-	err := _Stream.contract.Call(opts, out, "hasValidProof", profile, chunkId)
-	return *ret0, err
+	var out []interface{}
+	err := _Stream.contract.Call(opts, &out, "hasValidProof", profile, chunkId)
+
+	if err != nil {
+		return *new(bool), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(bool)).(*bool)
+
+	return out0, err
+
 }
 
 // HasValidProof is a free data retrieval call binding the contract method 0x4c0b715c.
@@ -576,12 +657,17 @@ func (_Stream *StreamCallerSession) HasValidProof(profile *big.Int, chunkId *big
 //
 // Solidity: function id() view returns(uint256)
 func (_Stream *StreamCaller) Id(opts *bind.CallOpts) (*big.Int, error) {
-	var (
-		ret0 = new(*big.Int)
-	)
-	out := ret0
-	err := _Stream.contract.Call(opts, out, "id")
-	return *ret0, err
+	var out []interface{}
+	err := _Stream.contract.Call(opts, &out, "id")
+
+	if err != nil {
+		return *new(*big.Int), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(*big.Int)).(**big.Int)
+
+	return out0, err
+
 }
 
 // Id is a free data retrieval call binding the contract method 0xaf640d0f.
@@ -602,12 +688,17 @@ func (_Stream *StreamCallerSession) Id() (*big.Int, error) {
 //
 // Solidity: function isChunk(uint256 ) view returns(bool)
 func (_Stream *StreamCaller) IsChunk(opts *bind.CallOpts, arg0 *big.Int) (bool, error) {
-	var (
-		ret0 = new(bool)
-	)
-	out := ret0
-	err := _Stream.contract.Call(opts, out, "isChunk", arg0)
-	return *ret0, err
+	var out []interface{}
+	err := _Stream.contract.Call(opts, &out, "isChunk", arg0)
+
+	if err != nil {
+		return *new(bool), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(bool)).(*bool)
+
+	return out0, err
+
 }
 
 // IsChunk is a free data retrieval call binding the contract method 0x1bb62fc4.
@@ -628,12 +719,17 @@ func (_Stream *StreamCallerSession) IsChunk(arg0 *big.Int) (bool, error) {
 //
 // Solidity: function isProfileTranscoded(uint256 profile) view returns(bool)
 func (_Stream *StreamCaller) IsProfileTranscoded(opts *bind.CallOpts, profile *big.Int) (bool, error) {
-	var (
-		ret0 = new(bool)
-	)
-	out := ret0
-	err := _Stream.contract.Call(opts, out, "isProfileTranscoded", profile)
-	return *ret0, err
+	var out []interface{}
+	err := _Stream.contract.Call(opts, &out, "isProfileTranscoded", profile)
+
+	if err != nil {
+		return *new(bool), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(bool)).(*bool)
+
+	return out0, err
+
 }
 
 // IsProfileTranscoded is a free data retrieval call binding the contract method 0x1f54e5bd.
@@ -654,12 +750,17 @@ func (_Stream *StreamCallerSession) IsProfileTranscoded(profile *big.Int) (bool,
 //
 // Solidity: function isTranscodingDone() view returns(bool)
 func (_Stream *StreamCaller) IsTranscodingDone(opts *bind.CallOpts) (bool, error) {
-	var (
-		ret0 = new(bool)
-	)
-	out := ret0
-	err := _Stream.contract.Call(opts, out, "isTranscodingDone")
-	return *ret0, err
+	var out []interface{}
+	err := _Stream.contract.Call(opts, &out, "isTranscodingDone")
+
+	if err != nil {
+		return *new(bool), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(bool)).(*bool)
+
+	return out0, err
+
 }
 
 // IsTranscodingDone is a free data retrieval call binding the contract method 0xfc1028bc.
@@ -680,12 +781,17 @@ func (_Stream *StreamCallerSession) IsTranscodingDone() (bool, error) {
 //
 // Solidity: function manager() view returns(address)
 func (_Stream *StreamCaller) Manager(opts *bind.CallOpts) (common.Address, error) {
-	var (
-		ret0 = new(common.Address)
-	)
-	out := ret0
-	err := _Stream.contract.Call(opts, out, "manager")
-	return *ret0, err
+	var out []interface{}
+	err := _Stream.contract.Call(opts, &out, "manager")
+
+	if err != nil {
+		return *new(common.Address), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(common.Address)).(*common.Address)
+
+	return out0, err
+
 }
 
 // Manager is a free data retrieval call binding the contract method 0x481c6a75.
@@ -710,14 +816,24 @@ func (_Stream *StreamCaller) OutStreams(opts *bind.CallOpts, arg0 *big.Int) (str
 	Index           *big.Int
 	ValidatedChunks *big.Int
 }, error) {
-	ret := new(struct {
+	var out []interface{}
+	err := _Stream.contract.Call(opts, &out, "outStreams", arg0)
+
+	outstruct := new(struct {
 		Required        bool
 		Index           *big.Int
 		ValidatedChunks *big.Int
 	})
-	out := ret
-	err := _Stream.contract.Call(opts, out, "outStreams", arg0)
-	return *ret, err
+	if err != nil {
+		return *outstruct, err
+	}
+
+	outstruct.Required = *abi.ConvertType(out[0], new(bool)).(*bool)
+	outstruct.Index = *abi.ConvertType(out[1], new(*big.Int)).(**big.Int)
+	outstruct.ValidatedChunks = *abi.ConvertType(out[2], new(*big.Int)).(**big.Int)
+
+	return *outstruct, err
+
 }
 
 // OutStreams is a free data retrieval call binding the contract method 0xc5d0b14c.
@@ -746,12 +862,17 @@ func (_Stream *StreamCallerSession) OutStreams(arg0 *big.Int) (struct {
 //
 // Solidity: function refundAllowed() view returns(bool)
 func (_Stream *StreamCaller) RefundAllowed(opts *bind.CallOpts) (bool, error) {
-	var (
-		ret0 = new(bool)
-	)
-	out := ret0
-	err := _Stream.contract.Call(opts, out, "refundAllowed")
-	return *ret0, err
+	var out []interface{}
+	err := _Stream.contract.Call(opts, &out, "refundAllowed")
+
+	if err != nil {
+		return *new(bool), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(bool)).(*bool)
+
+	return out0, err
+
 }
 
 // RefundAllowed is a free data retrieval call binding the contract method 0x3fa911ae.
@@ -772,12 +893,17 @@ func (_Stream *StreamCallerSession) RefundAllowed() (bool, error) {
 //
 // Solidity: function wattages(uint256 , uint256 ) view returns(uint256)
 func (_Stream *StreamCaller) Wattages(opts *bind.CallOpts, arg0 *big.Int, arg1 *big.Int) (*big.Int, error) {
-	var (
-		ret0 = new(*big.Int)
-	)
-	out := ret0
-	err := _Stream.contract.Call(opts, out, "wattages", arg0, arg1)
-	return *ret0, err
+	var out []interface{}
+	err := _Stream.contract.Call(opts, &out, "wattages", arg0, arg1)
+
+	if err != nil {
+		return *new(*big.Int), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(*big.Int)).(**big.Int)
+
+	return out0, err
+
 }
 
 // Wattages is a free data retrieval call binding the contract method 0xeda0ce17.
@@ -1082,6 +1208,7 @@ func (_Stream *StreamFilterer) ParseAccountFunded(log types.Log) (*StreamAccount
 	if err := _Stream.contract.UnpackLog(event, "AccountFunded", log); err != nil {
 		return nil, err
 	}
+	event.Raw = log
 	return event, nil
 }
 
@@ -1243,6 +1370,7 @@ func (_Stream *StreamFilterer) ParseChunkProofScrapped(log types.Log) (*StreamCh
 	if err := _Stream.contract.UnpackLog(event, "ChunkProofScrapped", log); err != nil {
 		return nil, err
 	}
+	event.Raw = log
 	return event, nil
 }
 
@@ -1404,6 +1532,7 @@ func (_Stream *StreamFilterer) ParseChunkProofSubmited(log types.Log) (*StreamCh
 	if err := _Stream.contract.UnpackLog(event, "ChunkProofSubmited", log); err != nil {
 		return nil, err
 	}
+	event.Raw = log
 	return event, nil
 }
 
@@ -1556,6 +1685,7 @@ func (_Stream *StreamFilterer) ParseChunkProofValidated(log types.Log) (*StreamC
 	if err := _Stream.contract.UnpackLog(event, "ChunkProofValidated", log); err != nil {
 		return nil, err
 	}
+	event.Raw = log
 	return event, nil
 }
 
@@ -1699,6 +1829,7 @@ func (_Stream *StreamFilterer) ParseDeposited(log types.Log) (*StreamDeposited, 
 	if err := _Stream.contract.UnpackLog(event, "Deposited", log); err != nil {
 		return nil, err
 	}
+	event.Raw = log
 	return event, nil
 }
 
@@ -1831,6 +1962,7 @@ func (_Stream *StreamFilterer) ParseOutOfFunds(log types.Log) (*StreamOutOfFunds
 	if err := _Stream.contract.UnpackLog(event, "OutOfFunds", log); err != nil {
 		return nil, err
 	}
+	event.Raw = log
 	return event, nil
 }
 
@@ -1964,6 +2096,7 @@ func (_Stream *StreamFilterer) ParseRefunded(log types.Log) (*StreamRefunded, er
 	if err := _Stream.contract.UnpackLog(event, "Refunded", log); err != nil {
 		return nil, err
 	}
+	event.Raw = log
 	return event, nil
 }
 
@@ -2097,6 +2230,7 @@ func (_Stream *StreamFilterer) ParseServiceFunded(log types.Log) (*StreamService
 	if err := _Stream.contract.UnpackLog(event, "ServiceFunded", log); err != nil {
 		return nil, err
 	}
+	event.Raw = log
 	return event, nil
 }
 
@@ -2250,5 +2384,6 @@ func (_Stream *StreamFilterer) ParseServiceShareCollected(log types.Log) (*Strea
 	if err := _Stream.contract.UnpackLog(event, "ServiceShareCollected", log); err != nil {
 		return nil, err
 	}
+	event.Raw = log
 	return event, nil
 }

@@ -154,7 +154,7 @@ func bindStakingEscrow(address common.Address, caller bind.ContractCaller, trans
 // sets the output to result. The result type might be a single field for simple
 // returns, a slice of interfaces for anonymous returns and a struct for named
 // returns.
-func (_StakingEscrow *StakingEscrowRaw) Call(opts *bind.CallOpts, result interface{}, method string, params ...interface{}) error {
+func (_StakingEscrow *StakingEscrowRaw) Call(opts *bind.CallOpts, result *[]interface{}, method string, params ...interface{}) error {
 	return _StakingEscrow.Contract.StakingEscrowCaller.contract.Call(opts, result, method, params...)
 }
 
@@ -173,7 +173,7 @@ func (_StakingEscrow *StakingEscrowRaw) Transact(opts *bind.TransactOpts, method
 // sets the output to result. The result type might be a single field for simple
 // returns, a slice of interfaces for anonymous returns and a struct for named
 // returns.
-func (_StakingEscrow *StakingEscrowCallerRaw) Call(opts *bind.CallOpts, result interface{}, method string, params ...interface{}) error {
+func (_StakingEscrow *StakingEscrowCallerRaw) Call(opts *bind.CallOpts, result *[]interface{}, method string, params ...interface{}) error {
 	return _StakingEscrow.Contract.contract.Call(opts, result, method, params...)
 }
 
@@ -192,12 +192,17 @@ func (_StakingEscrow *StakingEscrowTransactorRaw) Transact(opts *bind.TransactOp
 //
 // Solidity: function locked(address , address ) view returns(uint256)
 func (_StakingEscrow *StakingEscrowCaller) Locked(opts *bind.CallOpts, arg0 common.Address, arg1 common.Address) (*big.Int, error) {
-	var (
-		ret0 = new(*big.Int)
-	)
-	out := ret0
-	err := _StakingEscrow.contract.Call(opts, out, "locked", arg0, arg1)
-	return *ret0, err
+	var out []interface{}
+	err := _StakingEscrow.contract.Call(opts, &out, "locked", arg0, arg1)
+
+	if err != nil {
+		return *new(*big.Int), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(*big.Int)).(**big.Int)
+
+	return out0, err
+
 }
 
 // Locked is a free data retrieval call binding the contract method 0xdb20266f.
@@ -406,6 +411,7 @@ func (_StakingEscrow *StakingEscrowFilterer) ParseLocked(log types.Log) (*Stakin
 	if err := _StakingEscrow.contract.UnpackLog(event, "Locked", log); err != nil {
 		return nil, err
 	}
+	event.Raw = log
 	return event, nil
 }
 
@@ -559,5 +565,6 @@ func (_StakingEscrow *StakingEscrowFilterer) ParseUnlocked(log types.Log) (*Stak
 	if err := _StakingEscrow.contract.UnpackLog(event, "Unlocked", log); err != nil {
 		return nil, err
 	}
+	event.Raw = log
 	return event, nil
 }

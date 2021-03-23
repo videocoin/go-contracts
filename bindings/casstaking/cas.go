@@ -162,7 +162,7 @@ func bindCASStaking(address common.Address, caller bind.ContractCaller, transact
 // sets the output to result. The result type might be a single field for simple
 // returns, a slice of interfaces for anonymous returns and a struct for named
 // returns.
-func (_CASStaking *CASStakingRaw) Call(opts *bind.CallOpts, result interface{}, method string, params ...interface{}) error {
+func (_CASStaking *CASStakingRaw) Call(opts *bind.CallOpts, result *[]interface{}, method string, params ...interface{}) error {
 	return _CASStaking.Contract.CASStakingCaller.contract.Call(opts, result, method, params...)
 }
 
@@ -181,7 +181,7 @@ func (_CASStaking *CASStakingRaw) Transact(opts *bind.TransactOpts, method strin
 // sets the output to result. The result type might be a single field for simple
 // returns, a slice of interfaces for anonymous returns and a struct for named
 // returns.
-func (_CASStaking *CASStakingCallerRaw) Call(opts *bind.CallOpts, result interface{}, method string, params ...interface{}) error {
+func (_CASStaking *CASStakingCallerRaw) Call(opts *bind.CallOpts, result *[]interface{}, method string, params ...interface{}) error {
 	return _CASStaking.Contract.contract.Call(opts, result, method, params...)
 }
 
@@ -200,12 +200,17 @@ func (_CASStaking *CASStakingTransactorRaw) Transact(opts *bind.TransactOpts, me
 //
 // Solidity: function isOwner() view returns(bool)
 func (_CASStaking *CASStakingCaller) IsOwner(opts *bind.CallOpts) (bool, error) {
-	var (
-		ret0 = new(bool)
-	)
-	out := ret0
-	err := _CASStaking.contract.Call(opts, out, "isOwner")
-	return *ret0, err
+	var out []interface{}
+	err := _CASStaking.contract.Call(opts, &out, "isOwner")
+
+	if err != nil {
+		return *new(bool), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(bool)).(*bool)
+
+	return out0, err
+
 }
 
 // IsOwner is a free data retrieval call binding the contract method 0x8f32d59b.
@@ -226,12 +231,17 @@ func (_CASStaking *CASStakingCallerSession) IsOwner() (bool, error) {
 //
 // Solidity: function owner() view returns(address)
 func (_CASStaking *CASStakingCaller) Owner(opts *bind.CallOpts) (common.Address, error) {
-	var (
-		ret0 = new(common.Address)
-	)
-	out := ret0
-	err := _CASStaking.contract.Call(opts, out, "owner")
-	return *ret0, err
+	var out []interface{}
+	err := _CASStaking.contract.Call(opts, &out, "owner")
+
+	if err != nil {
+		return *new(common.Address), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(common.Address)).(*common.Address)
+
+	return out0, err
+
 }
 
 // Owner is a free data retrieval call binding the contract method 0x8da5cb5b.
@@ -252,12 +262,17 @@ func (_CASStaking *CASStakingCallerSession) Owner() (common.Address, error) {
 //
 // Solidity: function processed() view returns(uint256)
 func (_CASStaking *CASStakingCaller) Processed(opts *bind.CallOpts) (*big.Int, error) {
-	var (
-		ret0 = new(*big.Int)
-	)
-	out := ret0
-	err := _CASStaking.contract.Call(opts, out, "processed")
-	return *ret0, err
+	var out []interface{}
+	err := _CASStaking.contract.Call(opts, &out, "processed")
+
+	if err != nil {
+		return *new(*big.Int), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(*big.Int)).(**big.Int)
+
+	return out0, err
+
 }
 
 // Processed is a free data retrieval call binding the contract method 0x2ce5c284.
@@ -278,12 +293,17 @@ func (_CASStaking *CASStakingCallerSession) Processed() (*big.Int, error) {
 //
 // Solidity: function staking() view returns(address)
 func (_CASStaking *CASStakingCaller) Staking(opts *bind.CallOpts) (common.Address, error) {
-	var (
-		ret0 = new(common.Address)
-	)
-	out := ret0
-	err := _CASStaking.contract.Call(opts, out, "staking")
-	return *ret0, err
+	var out []interface{}
+	err := _CASStaking.contract.Call(opts, &out, "staking")
+
+	if err != nil {
+		return *new(common.Address), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(common.Address)).(*common.Address)
+
+	return out0, err
+
 }
 
 // Staking is a free data retrieval call binding the contract method 0x4cf088d9.
@@ -302,21 +322,21 @@ func (_CASStaking *CASStakingCallerSession) Staking() (common.Address, error) {
 
 // Cas is a paid mutator transaction binding the contract method 0x1a1517a6.
 //
-// Solidity: function cas(uint256 from, uint256 to, []CASStakingChange changes) payable returns()
+// Solidity: function cas(uint256 from, uint256 to, (address,address,uint256,uint8)[] changes) payable returns()
 func (_CASStaking *CASStakingTransactor) Cas(opts *bind.TransactOpts, from *big.Int, to *big.Int, changes []CASStakingChange) (*types.Transaction, error) {
 	return _CASStaking.contract.Transact(opts, "cas", from, to, changes)
 }
 
 // Cas is a paid mutator transaction binding the contract method 0x1a1517a6.
 //
-// Solidity: function cas(uint256 from, uint256 to, []CASStakingChange changes) payable returns()
+// Solidity: function cas(uint256 from, uint256 to, (address,address,uint256,uint8)[] changes) payable returns()
 func (_CASStaking *CASStakingSession) Cas(from *big.Int, to *big.Int, changes []CASStakingChange) (*types.Transaction, error) {
 	return _CASStaking.Contract.Cas(&_CASStaking.TransactOpts, from, to, changes)
 }
 
 // Cas is a paid mutator transaction binding the contract method 0x1a1517a6.
 //
-// Solidity: function cas(uint256 from, uint256 to, []CASStakingChange changes) payable returns()
+// Solidity: function cas(uint256 from, uint256 to, (address,address,uint256,uint8)[] changes) payable returns()
 func (_CASStaking *CASStakingTransactorSession) Cas(from *big.Int, to *big.Int, changes []CASStakingChange) (*types.Transaction, error) {
 	return _CASStaking.Contract.Cas(&_CASStaking.TransactOpts, from, to, changes)
 }
@@ -533,5 +553,6 @@ func (_CASStaking *CASStakingFilterer) ParseOwnershipTransferred(log types.Log) 
 	if err := _CASStaking.contract.UnpackLog(event, "OwnershipTransferred", log); err != nil {
 		return nil, err
 	}
+	event.Raw = log
 	return event, nil
 }

@@ -154,7 +154,7 @@ func bindTestERC(address common.Address, caller bind.ContractCaller, transactor 
 // sets the output to result. The result type might be a single field for simple
 // returns, a slice of interfaces for anonymous returns and a struct for named
 // returns.
-func (_TestERC *TestERCRaw) Call(opts *bind.CallOpts, result interface{}, method string, params ...interface{}) error {
+func (_TestERC *TestERCRaw) Call(opts *bind.CallOpts, result *[]interface{}, method string, params ...interface{}) error {
 	return _TestERC.Contract.TestERCCaller.contract.Call(opts, result, method, params...)
 }
 
@@ -173,7 +173,7 @@ func (_TestERC *TestERCRaw) Transact(opts *bind.TransactOpts, method string, par
 // sets the output to result. The result type might be a single field for simple
 // returns, a slice of interfaces for anonymous returns and a struct for named
 // returns.
-func (_TestERC *TestERCCallerRaw) Call(opts *bind.CallOpts, result interface{}, method string, params ...interface{}) error {
+func (_TestERC *TestERCCallerRaw) Call(opts *bind.CallOpts, result *[]interface{}, method string, params ...interface{}) error {
 	return _TestERC.Contract.contract.Call(opts, result, method, params...)
 }
 
@@ -192,12 +192,17 @@ func (_TestERC *TestERCTransactorRaw) Transact(opts *bind.TransactOpts, method s
 //
 // Solidity: function allowance(address owner, address spender) view returns(uint256)
 func (_TestERC *TestERCCaller) Allowance(opts *bind.CallOpts, owner common.Address, spender common.Address) (*big.Int, error) {
-	var (
-		ret0 = new(*big.Int)
-	)
-	out := ret0
-	err := _TestERC.contract.Call(opts, out, "allowance", owner, spender)
-	return *ret0, err
+	var out []interface{}
+	err := _TestERC.contract.Call(opts, &out, "allowance", owner, spender)
+
+	if err != nil {
+		return *new(*big.Int), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(*big.Int)).(**big.Int)
+
+	return out0, err
+
 }
 
 // Allowance is a free data retrieval call binding the contract method 0xdd62ed3e.
@@ -218,12 +223,17 @@ func (_TestERC *TestERCCallerSession) Allowance(owner common.Address, spender co
 //
 // Solidity: function balanceOf(address account) view returns(uint256)
 func (_TestERC *TestERCCaller) BalanceOf(opts *bind.CallOpts, account common.Address) (*big.Int, error) {
-	var (
-		ret0 = new(*big.Int)
-	)
-	out := ret0
-	err := _TestERC.contract.Call(opts, out, "balanceOf", account)
-	return *ret0, err
+	var out []interface{}
+	err := _TestERC.contract.Call(opts, &out, "balanceOf", account)
+
+	if err != nil {
+		return *new(*big.Int), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(*big.Int)).(**big.Int)
+
+	return out0, err
+
 }
 
 // BalanceOf is a free data retrieval call binding the contract method 0x70a08231.
@@ -244,12 +254,17 @@ func (_TestERC *TestERCCallerSession) BalanceOf(account common.Address) (*big.In
 //
 // Solidity: function isMinter(address account) view returns(bool)
 func (_TestERC *TestERCCaller) IsMinter(opts *bind.CallOpts, account common.Address) (bool, error) {
-	var (
-		ret0 = new(bool)
-	)
-	out := ret0
-	err := _TestERC.contract.Call(opts, out, "isMinter", account)
-	return *ret0, err
+	var out []interface{}
+	err := _TestERC.contract.Call(opts, &out, "isMinter", account)
+
+	if err != nil {
+		return *new(bool), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(bool)).(*bool)
+
+	return out0, err
+
 }
 
 // IsMinter is a free data retrieval call binding the contract method 0xaa271e1a.
@@ -270,12 +285,17 @@ func (_TestERC *TestERCCallerSession) IsMinter(account common.Address) (bool, er
 //
 // Solidity: function totalSupply() view returns(uint256)
 func (_TestERC *TestERCCaller) TotalSupply(opts *bind.CallOpts) (*big.Int, error) {
-	var (
-		ret0 = new(*big.Int)
-	)
-	out := ret0
-	err := _TestERC.contract.Call(opts, out, "totalSupply")
-	return *ret0, err
+	var out []interface{}
+	err := _TestERC.contract.Call(opts, &out, "totalSupply")
+
+	if err != nil {
+		return *new(*big.Int), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(*big.Int)).(**big.Int)
+
+	return out0, err
+
 }
 
 // TotalSupply is a free data retrieval call binding the contract method 0x18160ddd.
@@ -610,6 +630,7 @@ func (_TestERC *TestERCFilterer) ParseApproval(log types.Log) (*TestERCApproval,
 	if err := _TestERC.contract.UnpackLog(event, "Approval", log); err != nil {
 		return nil, err
 	}
+	event.Raw = log
 	return event, nil
 }
 
@@ -753,6 +774,7 @@ func (_TestERC *TestERCFilterer) ParseMinterAdded(log types.Log) (*TestERCMinter
 	if err := _TestERC.contract.UnpackLog(event, "MinterAdded", log); err != nil {
 		return nil, err
 	}
+	event.Raw = log
 	return event, nil
 }
 
@@ -896,6 +918,7 @@ func (_TestERC *TestERCFilterer) ParseMinterRemoved(log types.Log) (*TestERCMint
 	if err := _TestERC.contract.UnpackLog(event, "MinterRemoved", log); err != nil {
 		return nil, err
 	}
+	event.Raw = log
 	return event, nil
 }
 
@@ -1049,5 +1072,6 @@ func (_TestERC *TestERCFilterer) ParseTransfer(log types.Log) (*TestERCTransfer,
 	if err := _TestERC.contract.UnpackLog(event, "Transfer", log); err != nil {
 		return nil, err
 	}
+	event.Raw = log
 	return event, nil
 }

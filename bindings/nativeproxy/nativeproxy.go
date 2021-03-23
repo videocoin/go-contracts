@@ -154,7 +154,7 @@ func bindNativeProxy(address common.Address, caller bind.ContractCaller, transac
 // sets the output to result. The result type might be a single field for simple
 // returns, a slice of interfaces for anonymous returns and a struct for named
 // returns.
-func (_NativeProxy *NativeProxyRaw) Call(opts *bind.CallOpts, result interface{}, method string, params ...interface{}) error {
+func (_NativeProxy *NativeProxyRaw) Call(opts *bind.CallOpts, result *[]interface{}, method string, params ...interface{}) error {
 	return _NativeProxy.Contract.NativeProxyCaller.contract.Call(opts, result, method, params...)
 }
 
@@ -173,7 +173,7 @@ func (_NativeProxy *NativeProxyRaw) Transact(opts *bind.TransactOpts, method str
 // sets the output to result. The result type might be a single field for simple
 // returns, a slice of interfaces for anonymous returns and a struct for named
 // returns.
-func (_NativeProxy *NativeProxyCallerRaw) Call(opts *bind.CallOpts, result interface{}, method string, params ...interface{}) error {
+func (_NativeProxy *NativeProxyCallerRaw) Call(opts *bind.CallOpts, result *[]interface{}, method string, params ...interface{}) error {
 	return _NativeProxy.Contract.contract.Call(opts, result, method, params...)
 }
 
@@ -359,5 +359,6 @@ func (_NativeProxy *NativeProxyFilterer) ParseTransferProxied(log types.Log) (*N
 	if err := _NativeProxy.contract.UnpackLog(event, "TransferProxied", log); err != nil {
 		return nil, err
 	}
+	event.Raw = log
 	return event, nil
 }

@@ -161,7 +161,7 @@ func bindStakingManager(address common.Address, caller bind.ContractCaller, tran
 // sets the output to result. The result type might be a single field for simple
 // returns, a slice of interfaces for anonymous returns and a struct for named
 // returns.
-func (_StakingManager *StakingManagerRaw) Call(opts *bind.CallOpts, result interface{}, method string, params ...interface{}) error {
+func (_StakingManager *StakingManagerRaw) Call(opts *bind.CallOpts, result *[]interface{}, method string, params ...interface{}) error {
 	return _StakingManager.Contract.StakingManagerCaller.contract.Call(opts, result, method, params...)
 }
 
@@ -180,7 +180,7 @@ func (_StakingManager *StakingManagerRaw) Transact(opts *bind.TransactOpts, meth
 // sets the output to result. The result type might be a single field for simple
 // returns, a slice of interfaces for anonymous returns and a struct for named
 // returns.
-func (_StakingManager *StakingManagerCallerRaw) Call(opts *bind.CallOpts, result interface{}, method string, params ...interface{}) error {
+func (_StakingManager *StakingManagerCallerRaw) Call(opts *bind.CallOpts, result *[]interface{}, method string, params ...interface{}) error {
 	return _StakingManager.Contract.contract.Call(opts, result, method, params...)
 }
 
@@ -203,14 +203,24 @@ func (_StakingManager *StakingManagerCaller) Delegators(opts *bind.CallOpts, arg
 	Next    *big.Int
 	Managed bool
 }, error) {
-	ret := new(struct {
+	var out []interface{}
+	err := _StakingManager.contract.Call(opts, &out, "delegators", arg0)
+
+	outstruct := new(struct {
 		Pending *big.Int
 		Next    *big.Int
 		Managed bool
 	})
-	out := ret
-	err := _StakingManager.contract.Call(opts, out, "delegators", arg0)
-	return *ret, err
+	if err != nil {
+		return *outstruct, err
+	}
+
+	outstruct.Pending = *abi.ConvertType(out[0], new(*big.Int)).(**big.Int)
+	outstruct.Next = *abi.ConvertType(out[1], new(*big.Int)).(**big.Int)
+	outstruct.Managed = *abi.ConvertType(out[2], new(bool)).(*bool)
+
+	return *outstruct, err
+
 }
 
 // Delegators is a free data retrieval call binding the contract method 0x8d23fc61.
@@ -239,12 +249,17 @@ func (_StakingManager *StakingManagerCallerSession) Delegators(arg0 common.Addre
 //
 // Solidity: function getDelegatorStake(address transcoderAddr, address delegAddr) view returns(uint256)
 func (_StakingManager *StakingManagerCaller) GetDelegatorStake(opts *bind.CallOpts, transcoderAddr common.Address, delegAddr common.Address) (*big.Int, error) {
-	var (
-		ret0 = new(*big.Int)
-	)
-	out := ret0
-	err := _StakingManager.contract.Call(opts, out, "getDelegatorStake", transcoderAddr, delegAddr)
-	return *ret0, err
+	var out []interface{}
+	err := _StakingManager.contract.Call(opts, &out, "getDelegatorStake", transcoderAddr, delegAddr)
+
+	if err != nil {
+		return *new(*big.Int), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(*big.Int)).(**big.Int)
+
+	return out0, err
+
 }
 
 // GetDelegatorStake is a free data retrieval call binding the contract method 0x5028e2e1.
@@ -265,12 +280,17 @@ func (_StakingManager *StakingManagerCallerSession) GetDelegatorStake(transcoder
 //
 // Solidity: function getSelfStake(address _addr) view returns(uint256)
 func (_StakingManager *StakingManagerCaller) GetSelfStake(opts *bind.CallOpts, _addr common.Address) (*big.Int, error) {
-	var (
-		ret0 = new(*big.Int)
-	)
-	out := ret0
-	err := _StakingManager.contract.Call(opts, out, "getSelfStake", _addr)
-	return *ret0, err
+	var out []interface{}
+	err := _StakingManager.contract.Call(opts, &out, "getSelfStake", _addr)
+
+	if err != nil {
+		return *new(*big.Int), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(*big.Int)).(**big.Int)
+
+	return out0, err
+
 }
 
 // GetSelfStake is a free data retrieval call binding the contract method 0xfece707d.
@@ -291,12 +311,17 @@ func (_StakingManager *StakingManagerCallerSession) GetSelfStake(_addr common.Ad
 //
 // Solidity: function getSlashableAmount(address transcoderAddr, address delegatorAddr) view returns(uint256)
 func (_StakingManager *StakingManagerCaller) GetSlashableAmount(opts *bind.CallOpts, transcoderAddr common.Address, delegatorAddr common.Address) (*big.Int, error) {
-	var (
-		ret0 = new(*big.Int)
-	)
-	out := ret0
-	err := _StakingManager.contract.Call(opts, out, "getSlashableAmount", transcoderAddr, delegatorAddr)
-	return *ret0, err
+	var out []interface{}
+	err := _StakingManager.contract.Call(opts, &out, "getSlashableAmount", transcoderAddr, delegatorAddr)
+
+	if err != nil {
+		return *new(*big.Int), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(*big.Int)).(**big.Int)
+
+	return out0, err
+
 }
 
 // GetSlashableAmount is a free data retrieval call binding the contract method 0x8efc97a1.
@@ -317,12 +342,17 @@ func (_StakingManager *StakingManagerCallerSession) GetSlashableAmount(transcode
 //
 // Solidity: function getTotalStake(address _addr) view returns(uint256)
 func (_StakingManager *StakingManagerCaller) GetTotalStake(opts *bind.CallOpts, _addr common.Address) (*big.Int, error) {
-	var (
-		ret0 = new(*big.Int)
-	)
-	out := ret0
-	err := _StakingManager.contract.Call(opts, out, "getTotalStake", _addr)
-	return *ret0, err
+	var out []interface{}
+	err := _StakingManager.contract.Call(opts, &out, "getTotalStake", _addr)
+
+	if err != nil {
+		return *new(*big.Int), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(*big.Int)).(**big.Int)
+
+	return out0, err
+
 }
 
 // GetTotalStake is a free data retrieval call binding the contract method 0x1e7ff8f6.
@@ -343,12 +373,17 @@ func (_StakingManager *StakingManagerCallerSession) GetTotalStake(_addr common.A
 //
 // Solidity: function getTrancoderSlashes(address transcoderAddr) view returns(uint256)
 func (_StakingManager *StakingManagerCaller) GetTrancoderSlashes(opts *bind.CallOpts, transcoderAddr common.Address) (*big.Int, error) {
-	var (
-		ret0 = new(*big.Int)
-	)
-	out := ret0
-	err := _StakingManager.contract.Call(opts, out, "getTrancoderSlashes", transcoderAddr)
-	return *ret0, err
+	var out []interface{}
+	err := _StakingManager.contract.Call(opts, &out, "getTrancoderSlashes", transcoderAddr)
+
+	if err != nil {
+		return *new(*big.Int), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(*big.Int)).(**big.Int)
+
+	return out0, err
+
 }
 
 // GetTrancoderSlashes is a free data retrieval call binding the contract method 0xec69a1bb.
@@ -369,12 +404,17 @@ func (_StakingManager *StakingManagerCallerSession) GetTrancoderSlashes(transcod
 //
 // Solidity: function getTranscoderState(address transcoderAddr) view returns(uint8)
 func (_StakingManager *StakingManagerCaller) GetTranscoderState(opts *bind.CallOpts, transcoderAddr common.Address) (uint8, error) {
-	var (
-		ret0 = new(uint8)
-	)
-	out := ret0
-	err := _StakingManager.contract.Call(opts, out, "getTranscoderState", transcoderAddr)
-	return *ret0, err
+	var out []interface{}
+	err := _StakingManager.contract.Call(opts, &out, "getTranscoderState", transcoderAddr)
+
+	if err != nil {
+		return *new(uint8), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(uint8)).(*uint8)
+
+	return out0, err
+
 }
 
 // GetTranscoderState is a free data retrieval call binding the contract method 0xe71824bc.
@@ -393,26 +433,31 @@ func (_StakingManager *StakingManagerCallerSession) GetTranscoderState(transcode
 
 // GetUnbondingRequest is a free data retrieval call binding the contract method 0x9e79b122.
 //
-// Solidity: function getUnbondingRequest(address delegatorAddr, uint256 unbondingID) view returns(StakingManagerUnbondingRequest)
+// Solidity: function getUnbondingRequest(address delegatorAddr, uint256 unbondingID) view returns((address,uint256,uint256))
 func (_StakingManager *StakingManagerCaller) GetUnbondingRequest(opts *bind.CallOpts, delegatorAddr common.Address, unbondingID *big.Int) (StakingManagerUnbondingRequest, error) {
-	var (
-		ret0 = new(StakingManagerUnbondingRequest)
-	)
-	out := ret0
-	err := _StakingManager.contract.Call(opts, out, "getUnbondingRequest", delegatorAddr, unbondingID)
-	return *ret0, err
+	var out []interface{}
+	err := _StakingManager.contract.Call(opts, &out, "getUnbondingRequest", delegatorAddr, unbondingID)
+
+	if err != nil {
+		return *new(StakingManagerUnbondingRequest), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(StakingManagerUnbondingRequest)).(*StakingManagerUnbondingRequest)
+
+	return out0, err
+
 }
 
 // GetUnbondingRequest is a free data retrieval call binding the contract method 0x9e79b122.
 //
-// Solidity: function getUnbondingRequest(address delegatorAddr, uint256 unbondingID) view returns(StakingManagerUnbondingRequest)
+// Solidity: function getUnbondingRequest(address delegatorAddr, uint256 unbondingID) view returns((address,uint256,uint256))
 func (_StakingManager *StakingManagerSession) GetUnbondingRequest(delegatorAddr common.Address, unbondingID *big.Int) (StakingManagerUnbondingRequest, error) {
 	return _StakingManager.Contract.GetUnbondingRequest(&_StakingManager.CallOpts, delegatorAddr, unbondingID)
 }
 
 // GetUnbondingRequest is a free data retrieval call binding the contract method 0x9e79b122.
 //
-// Solidity: function getUnbondingRequest(address delegatorAddr, uint256 unbondingID) view returns(StakingManagerUnbondingRequest)
+// Solidity: function getUnbondingRequest(address delegatorAddr, uint256 unbondingID) view returns((address,uint256,uint256))
 func (_StakingManager *StakingManagerCallerSession) GetUnbondingRequest(delegatorAddr common.Address, unbondingID *big.Int) (StakingManagerUnbondingRequest, error) {
 	return _StakingManager.Contract.GetUnbondingRequest(&_StakingManager.CallOpts, delegatorAddr, unbondingID)
 }
@@ -421,12 +466,17 @@ func (_StakingManager *StakingManagerCallerSession) GetUnbondingRequest(delegato
 //
 // Solidity: function isJailed(address transcoderAddr) view returns(bool)
 func (_StakingManager *StakingManagerCaller) IsJailed(opts *bind.CallOpts, transcoderAddr common.Address) (bool, error) {
-	var (
-		ret0 = new(bool)
-	)
-	out := ret0
-	err := _StakingManager.contract.Call(opts, out, "isJailed", transcoderAddr)
-	return *ret0, err
+	var out []interface{}
+	err := _StakingManager.contract.Call(opts, &out, "isJailed", transcoderAddr)
+
+	if err != nil {
+		return *new(bool), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(bool)).(*bool)
+
+	return out0, err
+
 }
 
 // IsJailed is a free data retrieval call binding the contract method 0x14bfb527.
@@ -447,12 +497,17 @@ func (_StakingManager *StakingManagerCallerSession) IsJailed(transcoderAddr comm
 //
 // Solidity: function isManaged(address delegatorAddr) view returns(bool)
 func (_StakingManager *StakingManagerCaller) IsManaged(opts *bind.CallOpts, delegatorAddr common.Address) (bool, error) {
-	var (
-		ret0 = new(bool)
-	)
-	out := ret0
-	err := _StakingManager.contract.Call(opts, out, "isManaged", delegatorAddr)
-	return *ret0, err
+	var out []interface{}
+	err := _StakingManager.contract.Call(opts, &out, "isManaged", delegatorAddr)
+
+	if err != nil {
+		return *new(bool), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(bool)).(*bool)
+
+	return out0, err
+
 }
 
 // IsManaged is a free data retrieval call binding the contract method 0x220bb14e.
@@ -473,12 +528,17 @@ func (_StakingManager *StakingManagerCallerSession) IsManaged(delegatorAddr comm
 //
 // Solidity: function isManager(address v) view returns(bool)
 func (_StakingManager *StakingManagerCaller) IsManager(opts *bind.CallOpts, v common.Address) (bool, error) {
-	var (
-		ret0 = new(bool)
-	)
-	out := ret0
-	err := _StakingManager.contract.Call(opts, out, "isManager", v)
-	return *ret0, err
+	var out []interface{}
+	err := _StakingManager.contract.Call(opts, &out, "isManager", v)
+
+	if err != nil {
+		return *new(bool), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(bool)).(*bool)
+
+	return out0, err
+
 }
 
 // IsManager is a free data retrieval call binding the contract method 0xf3ae2415.
@@ -499,12 +559,17 @@ func (_StakingManager *StakingManagerCallerSession) IsManager(v common.Address) 
 //
 // Solidity: function isOwner() view returns(bool)
 func (_StakingManager *StakingManagerCaller) IsOwner(opts *bind.CallOpts) (bool, error) {
-	var (
-		ret0 = new(bool)
-	)
-	out := ret0
-	err := _StakingManager.contract.Call(opts, out, "isOwner")
-	return *ret0, err
+	var out []interface{}
+	err := _StakingManager.contract.Call(opts, &out, "isOwner")
+
+	if err != nil {
+		return *new(bool), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(bool)).(*bool)
+
+	return out0, err
+
 }
 
 // IsOwner is a free data retrieval call binding the contract method 0x8f32d59b.
@@ -525,12 +590,17 @@ func (_StakingManager *StakingManagerCallerSession) IsOwner() (bool, error) {
 //
 // Solidity: function minDelegation() view returns(uint256)
 func (_StakingManager *StakingManagerCaller) MinDelegation(opts *bind.CallOpts) (*big.Int, error) {
-	var (
-		ret0 = new(*big.Int)
-	)
-	out := ret0
-	err := _StakingManager.contract.Call(opts, out, "minDelegation")
-	return *ret0, err
+	var out []interface{}
+	err := _StakingManager.contract.Call(opts, &out, "minDelegation")
+
+	if err != nil {
+		return *new(*big.Int), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(*big.Int)).(**big.Int)
+
+	return out0, err
+
 }
 
 // MinDelegation is a free data retrieval call binding the contract method 0x02985992.
@@ -551,12 +621,17 @@ func (_StakingManager *StakingManagerCallerSession) MinDelegation() (*big.Int, e
 //
 // Solidity: function minSelfStake() view returns(uint256)
 func (_StakingManager *StakingManagerCaller) MinSelfStake(opts *bind.CallOpts) (*big.Int, error) {
-	var (
-		ret0 = new(*big.Int)
-	)
-	out := ret0
-	err := _StakingManager.contract.Call(opts, out, "minSelfStake")
-	return *ret0, err
+	var out []interface{}
+	err := _StakingManager.contract.Call(opts, &out, "minSelfStake")
+
+	if err != nil {
+		return *new(*big.Int), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(*big.Int)).(**big.Int)
+
+	return out0, err
+
 }
 
 // MinSelfStake is a free data retrieval call binding the contract method 0xc5f530af.
@@ -577,12 +652,17 @@ func (_StakingManager *StakingManagerCallerSession) MinSelfStake() (*big.Int, er
 //
 // Solidity: function owner() view returns(address)
 func (_StakingManager *StakingManagerCaller) Owner(opts *bind.CallOpts) (common.Address, error) {
-	var (
-		ret0 = new(common.Address)
-	)
-	out := ret0
-	err := _StakingManager.contract.Call(opts, out, "owner")
-	return *ret0, err
+	var out []interface{}
+	err := _StakingManager.contract.Call(opts, &out, "owner")
+
+	if err != nil {
+		return *new(common.Address), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(common.Address)).(*common.Address)
+
+	return out0, err
+
 }
 
 // Owner is a free data retrieval call binding the contract method 0x8da5cb5b.
@@ -603,12 +683,17 @@ func (_StakingManager *StakingManagerCallerSession) Owner() (common.Address, err
 //
 // Solidity: function pendingWithdrawalsExist() view returns(bool)
 func (_StakingManager *StakingManagerCaller) PendingWithdrawalsExist(opts *bind.CallOpts) (bool, error) {
-	var (
-		ret0 = new(bool)
-	)
-	out := ret0
-	err := _StakingManager.contract.Call(opts, out, "pendingWithdrawalsExist")
-	return *ret0, err
+	var out []interface{}
+	err := _StakingManager.contract.Call(opts, &out, "pendingWithdrawalsExist")
+
+	if err != nil {
+		return *new(bool), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(bool)).(*bool)
+
+	return out0, err
+
 }
 
 // PendingWithdrawalsExist is a free data retrieval call binding the contract method 0xc57cc200.
@@ -629,12 +714,17 @@ func (_StakingManager *StakingManagerCallerSession) PendingWithdrawalsExist() (b
 //
 // Solidity: function slashRate() view returns(uint256)
 func (_StakingManager *StakingManagerCaller) SlashRate(opts *bind.CallOpts) (*big.Int, error) {
-	var (
-		ret0 = new(*big.Int)
-	)
-	out := ret0
-	err := _StakingManager.contract.Call(opts, out, "slashRate")
-	return *ret0, err
+	var out []interface{}
+	err := _StakingManager.contract.Call(opts, &out, "slashRate")
+
+	if err != nil {
+		return *new(*big.Int), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(*big.Int)).(**big.Int)
+
+	return out0, err
+
 }
 
 // SlashRate is a free data retrieval call binding the contract method 0xe341181d.
@@ -655,12 +745,17 @@ func (_StakingManager *StakingManagerCallerSession) SlashRate() (*big.Int, error
 //
 // Solidity: function transcoderApprovalPeriod() view returns(uint256)
 func (_StakingManager *StakingManagerCaller) TranscoderApprovalPeriod(opts *bind.CallOpts) (*big.Int, error) {
-	var (
-		ret0 = new(*big.Int)
-	)
-	out := ret0
-	err := _StakingManager.contract.Call(opts, out, "transcoderApprovalPeriod")
-	return *ret0, err
+	var out []interface{}
+	err := _StakingManager.contract.Call(opts, &out, "transcoderApprovalPeriod")
+
+	if err != nil {
+		return *new(*big.Int), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(*big.Int)).(**big.Int)
+
+	return out0, err
+
 }
 
 // TranscoderApprovalPeriod is a free data retrieval call binding the contract method 0x3939e608.
@@ -690,7 +785,10 @@ func (_StakingManager *StakingManagerCaller) Transcoders(opts *bind.CallOpts, ar
 	Jailed                bool
 	EffectiveMinSelfStake *big.Int
 }, error) {
-	ret := new(struct {
+	var out []interface{}
+	err := _StakingManager.contract.Call(opts, &out, "transcoders", arg0)
+
+	outstruct := new(struct {
 		Total                 *big.Int
 		Timestamp             *big.Int
 		RewardRate            *big.Int
@@ -700,9 +798,21 @@ func (_StakingManager *StakingManagerCaller) Transcoders(opts *bind.CallOpts, ar
 		Jailed                bool
 		EffectiveMinSelfStake *big.Int
 	})
-	out := ret
-	err := _StakingManager.contract.Call(opts, out, "transcoders", arg0)
-	return *ret, err
+	if err != nil {
+		return *outstruct, err
+	}
+
+	outstruct.Total = *abi.ConvertType(out[0], new(*big.Int)).(**big.Int)
+	outstruct.Timestamp = *abi.ConvertType(out[1], new(*big.Int)).(**big.Int)
+	outstruct.RewardRate = *abi.ConvertType(out[2], new(*big.Int)).(**big.Int)
+	outstruct.Rewards = *abi.ConvertType(out[3], new(*big.Int)).(**big.Int)
+	outstruct.Zone = *abi.ConvertType(out[4], new(*big.Int)).(**big.Int)
+	outstruct.Capacity = *abi.ConvertType(out[5], new(*big.Int)).(**big.Int)
+	outstruct.Jailed = *abi.ConvertType(out[6], new(bool)).(*bool)
+	outstruct.EffectiveMinSelfStake = *abi.ConvertType(out[7], new(*big.Int)).(**big.Int)
+
+	return *outstruct, err
+
 }
 
 // Transcoders is a free data retrieval call binding the contract method 0xe2dc17f6.
@@ -741,12 +851,17 @@ func (_StakingManager *StakingManagerCallerSession) Transcoders(arg0 common.Addr
 //
 // Solidity: function transcodersArray(uint256 ) view returns(address)
 func (_StakingManager *StakingManagerCaller) TranscodersArray(opts *bind.CallOpts, arg0 *big.Int) (common.Address, error) {
-	var (
-		ret0 = new(common.Address)
-	)
-	out := ret0
-	err := _StakingManager.contract.Call(opts, out, "transcodersArray", arg0)
-	return *ret0, err
+	var out []interface{}
+	err := _StakingManager.contract.Call(opts, &out, "transcodersArray", arg0)
+
+	if err != nil {
+		return *new(common.Address), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(common.Address)).(*common.Address)
+
+	return out0, err
+
 }
 
 // TranscodersArray is a free data retrieval call binding the contract method 0xec810a0a.
@@ -767,12 +882,17 @@ func (_StakingManager *StakingManagerCallerSession) TranscodersArray(arg0 *big.I
 //
 // Solidity: function transcodersCount() view returns(uint256)
 func (_StakingManager *StakingManagerCaller) TranscodersCount(opts *bind.CallOpts) (*big.Int, error) {
-	var (
-		ret0 = new(*big.Int)
-	)
-	out := ret0
-	err := _StakingManager.contract.Call(opts, out, "transcodersCount")
-	return *ret0, err
+	var out []interface{}
+	err := _StakingManager.contract.Call(opts, &out, "transcodersCount")
+
+	if err != nil {
+		return *new(*big.Int), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(*big.Int)).(**big.Int)
+
+	return out0, err
+
 }
 
 // TranscodersCount is a free data retrieval call binding the contract method 0xfa760154.
@@ -793,12 +913,17 @@ func (_StakingManager *StakingManagerCallerSession) TranscodersCount() (*big.Int
 //
 // Solidity: function unbondingPeriod() view returns(uint256)
 func (_StakingManager *StakingManagerCaller) UnbondingPeriod(opts *bind.CallOpts) (*big.Int, error) {
-	var (
-		ret0 = new(*big.Int)
-	)
-	out := ret0
-	err := _StakingManager.contract.Call(opts, out, "unbondingPeriod")
-	return *ret0, err
+	var out []interface{}
+	err := _StakingManager.contract.Call(opts, &out, "unbondingPeriod")
+
+	if err != nil {
+		return *new(*big.Int), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(*big.Int)).(**big.Int)
+
+	return out0, err
+
 }
 
 // UnbondingPeriod is a free data retrieval call binding the contract method 0x6cf6d675.
@@ -1372,6 +1497,7 @@ func (_StakingManager *StakingManagerFilterer) ParseDelegated(log types.Log) (*S
 	if err := _StakingManager.contract.UnpackLog(event, "Delegated", log); err != nil {
 		return nil, err
 	}
+	event.Raw = log
 	return event, nil
 }
 
@@ -1515,6 +1641,7 @@ func (_StakingManager *StakingManagerFilterer) ParseJailed(log types.Log) (*Stak
 	if err := _StakingManager.contract.UnpackLog(event, "Jailed", log); err != nil {
 		return nil, err
 	}
+	event.Raw = log
 	return event, nil
 }
 
@@ -1658,6 +1785,7 @@ func (_StakingManager *StakingManagerFilterer) ParseManagerAdded(log types.Log) 
 	if err := _StakingManager.contract.UnpackLog(event, "ManagerAdded", log); err != nil {
 		return nil, err
 	}
+	event.Raw = log
 	return event, nil
 }
 
@@ -1801,6 +1929,7 @@ func (_StakingManager *StakingManagerFilterer) ParseManagerRemoved(log types.Log
 	if err := _StakingManager.contract.UnpackLog(event, "ManagerRemoved", log); err != nil {
 		return nil, err
 	}
+	event.Raw = log
 	return event, nil
 }
 
@@ -1953,6 +2082,7 @@ func (_StakingManager *StakingManagerFilterer) ParseOwnershipTransferred(log typ
 	if err := _StakingManager.contract.UnpackLog(event, "OwnershipTransferred", log); err != nil {
 		return nil, err
 	}
+	event.Raw = log
 	return event, nil
 }
 
@@ -2105,6 +2235,7 @@ func (_StakingManager *StakingManagerFilterer) ParseSlashed(log types.Log) (*Sta
 	if err := _StakingManager.contract.UnpackLog(event, "Slashed", log); err != nil {
 		return nil, err
 	}
+	event.Raw = log
 	return event, nil
 }
 
@@ -2267,6 +2398,7 @@ func (_StakingManager *StakingManagerFilterer) ParseStakeWithdrawal(log types.Lo
 	if err := _StakingManager.contract.UnpackLog(event, "StakeWithdrawal", log); err != nil {
 		return nil, err
 	}
+	event.Raw = log
 	return event, nil
 }
 
@@ -2410,6 +2542,7 @@ func (_StakingManager *StakingManagerFilterer) ParseTranscoderRegistered(log typ
 	if err := _StakingManager.contract.UnpackLog(event, "TranscoderRegistered", log); err != nil {
 		return nil, err
 	}
+	event.Raw = log
 	return event, nil
 }
 
@@ -2573,6 +2706,7 @@ func (_StakingManager *StakingManagerFilterer) ParseUnbondingRequested(log types
 	if err := _StakingManager.contract.UnpackLog(event, "UnbondingRequested", log); err != nil {
 		return nil, err
 	}
+	event.Raw = log
 	return event, nil
 }
 
@@ -2716,5 +2850,6 @@ func (_StakingManager *StakingManagerFilterer) ParseUnjailed(log types.Log) (*St
 	if err := _StakingManager.contract.UnpackLog(event, "Unjailed", log); err != nil {
 		return nil, err
 	}
+	event.Raw = log
 	return event, nil
 }
