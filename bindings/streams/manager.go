@@ -154,7 +154,7 @@ func bindStreamManager(address common.Address, caller bind.ContractCaller, trans
 // sets the output to result. The result type might be a single field for simple
 // returns, a slice of interfaces for anonymous returns and a struct for named
 // returns.
-func (_StreamManager *StreamManagerRaw) Call(opts *bind.CallOpts, result interface{}, method string, params ...interface{}) error {
+func (_StreamManager *StreamManagerRaw) Call(opts *bind.CallOpts, result *[]interface{}, method string, params ...interface{}) error {
 	return _StreamManager.Contract.StreamManagerCaller.contract.Call(opts, result, method, params...)
 }
 
@@ -173,7 +173,7 @@ func (_StreamManager *StreamManagerRaw) Transact(opts *bind.TransactOpts, method
 // sets the output to result. The result type might be a single field for simple
 // returns, a slice of interfaces for anonymous returns and a struct for named
 // returns.
-func (_StreamManager *StreamManagerCallerRaw) Call(opts *bind.CallOpts, result interface{}, method string, params ...interface{}) error {
+func (_StreamManager *StreamManagerCallerRaw) Call(opts *bind.CallOpts, result *[]interface{}, method string, params ...interface{}) error {
 	return _StreamManager.Contract.contract.Call(opts, result, method, params...)
 }
 
@@ -192,12 +192,17 @@ func (_StreamManager *StreamManagerTransactorRaw) Transact(opts *bind.TransactOp
 //
 // Solidity: function getServiceSharePercent() view returns(uint256)
 func (_StreamManager *StreamManagerCaller) GetServiceSharePercent(opts *bind.CallOpts) (*big.Int, error) {
-	var (
-		ret0 = new(*big.Int)
-	)
-	out := ret0
-	err := _StreamManager.contract.Call(opts, out, "getServiceSharePercent")
-	return *ret0, err
+	var out []interface{}
+	err := _StreamManager.contract.Call(opts, &out, "getServiceSharePercent")
+
+	if err != nil {
+		return *new(*big.Int), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(*big.Int)).(**big.Int)
+
+	return out0, err
+
 }
 
 // GetServiceSharePercent is a free data retrieval call binding the contract method 0x23be9d27.
@@ -218,12 +223,17 @@ func (_StreamManager *StreamManagerCallerSession) GetServiceSharePercent() (*big
 //
 // Solidity: function getVersion() view returns(string)
 func (_StreamManager *StreamManagerCaller) GetVersion(opts *bind.CallOpts) (string, error) {
-	var (
-		ret0 = new(string)
-	)
-	out := ret0
-	err := _StreamManager.contract.Call(opts, out, "getVersion")
-	return *ret0, err
+	var out []interface{}
+	err := _StreamManager.contract.Call(opts, &out, "getVersion")
+
+	if err != nil {
+		return *new(string), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(string)).(*string)
+
+	return out0, err
+
 }
 
 // GetVersion is a free data retrieval call binding the contract method 0x0d8e6e2c.
@@ -244,12 +254,17 @@ func (_StreamManager *StreamManagerCallerSession) GetVersion() (string, error) {
 //
 // Solidity: function isOwner() view returns(bool)
 func (_StreamManager *StreamManagerCaller) IsOwner(opts *bind.CallOpts) (bool, error) {
-	var (
-		ret0 = new(bool)
-	)
-	out := ret0
-	err := _StreamManager.contract.Call(opts, out, "isOwner")
-	return *ret0, err
+	var out []interface{}
+	err := _StreamManager.contract.Call(opts, &out, "isOwner")
+
+	if err != nil {
+		return *new(bool), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(bool)).(*bool)
+
+	return out0, err
+
 }
 
 // IsOwner is a free data retrieval call binding the contract method 0x8f32d59b.
@@ -270,12 +285,17 @@ func (_StreamManager *StreamManagerCallerSession) IsOwner() (bool, error) {
 //
 // Solidity: function isPublisher(address v) view returns(bool)
 func (_StreamManager *StreamManagerCaller) IsPublisher(opts *bind.CallOpts, v common.Address) (bool, error) {
-	var (
-		ret0 = new(bool)
-	)
-	out := ret0
-	err := _StreamManager.contract.Call(opts, out, "isPublisher", v)
-	return *ret0, err
+	var out []interface{}
+	err := _StreamManager.contract.Call(opts, &out, "isPublisher", v)
+
+	if err != nil {
+		return *new(bool), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(bool)).(*bool)
+
+	return out0, err
+
 }
 
 // IsPublisher is a free data retrieval call binding the contract method 0x41859ac8.
@@ -296,12 +316,17 @@ func (_StreamManager *StreamManagerCallerSession) IsPublisher(v common.Address) 
 //
 // Solidity: function isValidator(address v) view returns(bool)
 func (_StreamManager *StreamManagerCaller) IsValidator(opts *bind.CallOpts, v common.Address) (bool, error) {
-	var (
-		ret0 = new(bool)
-	)
-	out := ret0
-	err := _StreamManager.contract.Call(opts, out, "isValidator", v)
-	return *ret0, err
+	var out []interface{}
+	err := _StreamManager.contract.Call(opts, &out, "isValidator", v)
+
+	if err != nil {
+		return *new(bool), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(bool)).(*bool)
+
+	return out0, err
+
 }
 
 // IsValidator is a free data retrieval call binding the contract method 0xfacd743b.
@@ -322,12 +347,17 @@ func (_StreamManager *StreamManagerCallerSession) IsValidator(v common.Address) 
 //
 // Solidity: function owner() view returns(address)
 func (_StreamManager *StreamManagerCaller) Owner(opts *bind.CallOpts) (common.Address, error) {
-	var (
-		ret0 = new(common.Address)
-	)
-	out := ret0
-	err := _StreamManager.contract.Call(opts, out, "owner")
-	return *ret0, err
+	var out []interface{}
+	err := _StreamManager.contract.Call(opts, &out, "owner")
+
+	if err != nil {
+		return *new(common.Address), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(common.Address)).(*common.Address)
+
+	return out0, err
+
 }
 
 // Owner is a free data retrieval call binding the contract method 0x8da5cb5b.
@@ -348,12 +378,17 @@ func (_StreamManager *StreamManagerCallerSession) Owner() (common.Address, error
 //
 // Solidity: function profiles(uint256 ) view returns(string)
 func (_StreamManager *StreamManagerCaller) Profiles(opts *bind.CallOpts, arg0 *big.Int) (string, error) {
-	var (
-		ret0 = new(string)
-	)
-	out := ret0
-	err := _StreamManager.contract.Call(opts, out, "profiles", arg0)
-	return *ret0, err
+	var out []interface{}
+	err := _StreamManager.contract.Call(opts, &out, "profiles", arg0)
+
+	if err != nil {
+		return *new(string), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(string)).(*string)
+
+	return out0, err
+
 }
 
 // Profiles is a free data retrieval call binding the contract method 0xc36fe3d6.
@@ -374,12 +409,17 @@ func (_StreamManager *StreamManagerCallerSession) Profiles(arg0 *big.Int) (strin
 //
 // Solidity: function refundAllowed(uint256 streamId) view returns(bool)
 func (_StreamManager *StreamManagerCaller) RefundAllowed(opts *bind.CallOpts, streamId *big.Int) (bool, error) {
-	var (
-		ret0 = new(bool)
-	)
-	out := ret0
-	err := _StreamManager.contract.Call(opts, out, "refundAllowed", streamId)
-	return *ret0, err
+	var out []interface{}
+	err := _StreamManager.contract.Call(opts, &out, "refundAllowed", streamId)
+
+	if err != nil {
+		return *new(bool), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(bool)).(*bool)
+
+	return out0, err
+
 }
 
 // RefundAllowed is a free data retrieval call binding the contract method 0x0f514717.
@@ -407,7 +447,10 @@ func (_StreamManager *StreamManagerCaller) Requests(opts *bind.CallOpts, arg0 *b
 	Stream   common.Address
 	StreamId *big.Int
 }, error) {
-	ret := new(struct {
+	var out []interface{}
+	err := _StreamManager.contract.Call(opts, &out, "requests", arg0)
+
+	outstruct := new(struct {
 		Approved bool
 		Refund   bool
 		Ended    bool
@@ -415,9 +458,19 @@ func (_StreamManager *StreamManagerCaller) Requests(opts *bind.CallOpts, arg0 *b
 		Stream   common.Address
 		StreamId *big.Int
 	})
-	out := ret
-	err := _StreamManager.contract.Call(opts, out, "requests", arg0)
-	return *ret, err
+	if err != nil {
+		return *outstruct, err
+	}
+
+	outstruct.Approved = *abi.ConvertType(out[0], new(bool)).(*bool)
+	outstruct.Refund = *abi.ConvertType(out[1], new(bool)).(*bool)
+	outstruct.Ended = *abi.ConvertType(out[2], new(bool)).(*bool)
+	outstruct.Client = *abi.ConvertType(out[3], new(common.Address)).(*common.Address)
+	outstruct.Stream = *abi.ConvertType(out[4], new(common.Address)).(*common.Address)
+	outstruct.StreamId = *abi.ConvertType(out[5], new(*big.Int)).(**big.Int)
+
+	return *outstruct, err
+
 }
 
 // Requests is a free data retrieval call binding the contract method 0x81d12c58.
@@ -452,12 +505,17 @@ func (_StreamManager *StreamManagerCallerSession) Requests(arg0 *big.Int) (struc
 //
 // Solidity: function serviceSharePercent() view returns(uint256)
 func (_StreamManager *StreamManagerCaller) ServiceSharePercent(opts *bind.CallOpts) (*big.Int, error) {
-	var (
-		ret0 = new(*big.Int)
-	)
-	out := ret0
-	err := _StreamManager.contract.Call(opts, out, "serviceSharePercent")
-	return *ret0, err
+	var out []interface{}
+	err := _StreamManager.contract.Call(opts, &out, "serviceSharePercent")
+
+	if err != nil {
+		return *new(*big.Int), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(*big.Int)).(**big.Int)
+
+	return out0, err
+
 }
 
 // ServiceSharePercent is a free data retrieval call binding the contract method 0x13186d0e.
@@ -478,12 +536,17 @@ func (_StreamManager *StreamManagerCallerSession) ServiceSharePercent() (*big.In
 //
 // Solidity: function version() view returns(string)
 func (_StreamManager *StreamManagerCaller) Version(opts *bind.CallOpts) (string, error) {
-	var (
-		ret0 = new(string)
-	)
-	out := ret0
-	err := _StreamManager.contract.Call(opts, out, "version")
-	return *ret0, err
+	var out []interface{}
+	err := _StreamManager.contract.Call(opts, &out, "version")
+
+	if err != nil {
+		return *new(string), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(string)).(*string)
+
+	return out0, err
+
 }
 
 // Version is a free data retrieval call binding the contract method 0x54fd4d50.
@@ -943,6 +1006,7 @@ func (_StreamManager *StreamManagerFilterer) ParseInputChunkAdded(log types.Log)
 	if err := _StreamManager.contract.UnpackLog(event, "InputChunkAdded", log); err != nil {
 		return nil, err
 	}
+	event.Raw = log
 	return event, nil
 }
 
@@ -1095,6 +1159,7 @@ func (_StreamManager *StreamManagerFilterer) ParseOwnershipTransferred(log types
 	if err := _StreamManager.contract.UnpackLog(event, "OwnershipTransferred", log); err != nil {
 		return nil, err
 	}
+	event.Raw = log
 	return event, nil
 }
 
@@ -1238,6 +1303,7 @@ func (_StreamManager *StreamManagerFilterer) ParsePublisherAdded(log types.Log) 
 	if err := _StreamManager.contract.UnpackLog(event, "PublisherAdded", log); err != nil {
 		return nil, err
 	}
+	event.Raw = log
 	return event, nil
 }
 
@@ -1381,6 +1447,7 @@ func (_StreamManager *StreamManagerFilterer) ParsePublisherRemoved(log types.Log
 	if err := _StreamManager.contract.UnpackLog(event, "PublisherRemoved", log); err != nil {
 		return nil, err
 	}
+	event.Raw = log
 	return event, nil
 }
 
@@ -1524,6 +1591,7 @@ func (_StreamManager *StreamManagerFilterer) ParseRefundAllowed(log types.Log) (
 	if err := _StreamManager.contract.UnpackLog(event, "RefundAllowed", log); err != nil {
 		return nil, err
 	}
+	event.Raw = log
 	return event, nil
 }
 
@@ -1667,6 +1735,7 @@ func (_StreamManager *StreamManagerFilterer) ParseRefundRevoked(log types.Log) (
 	if err := _StreamManager.contract.UnpackLog(event, "RefundRevoked", log); err != nil {
 		return nil, err
 	}
+	event.Raw = log
 	return event, nil
 }
 
@@ -1810,6 +1879,7 @@ func (_StreamManager *StreamManagerFilterer) ParseServiceSharePercentUpdated(log
 	if err := _StreamManager.contract.UnpackLog(event, "ServiceSharePercentUpdated", log); err != nil {
 		return nil, err
 	}
+	event.Raw = log
 	return event, nil
 }
 
@@ -1953,6 +2023,7 @@ func (_StreamManager *StreamManagerFilterer) ParseStreamApproved(log types.Log) 
 	if err := _StreamManager.contract.UnpackLog(event, "StreamApproved", log); err != nil {
 		return nil, err
 	}
+	event.Raw = log
 	return event, nil
 }
 
@@ -2105,6 +2176,7 @@ func (_StreamManager *StreamManagerFilterer) ParseStreamCreated(log types.Log) (
 	if err := _StreamManager.contract.UnpackLog(event, "StreamCreated", log); err != nil {
 		return nil, err
 	}
+	event.Raw = log
 	return event, nil
 }
 
@@ -2257,6 +2329,7 @@ func (_StreamManager *StreamManagerFilterer) ParseStreamEnded(log types.Log) (*S
 	if err := _StreamManager.contract.UnpackLog(event, "StreamEnded", log); err != nil {
 		return nil, err
 	}
+	event.Raw = log
 	return event, nil
 }
 
@@ -2409,6 +2482,7 @@ func (_StreamManager *StreamManagerFilterer) ParseStreamRequested(log types.Log)
 	if err := _StreamManager.contract.UnpackLog(event, "StreamRequested", log); err != nil {
 		return nil, err
 	}
+	event.Raw = log
 	return event, nil
 }
 
@@ -2552,6 +2626,7 @@ func (_StreamManager *StreamManagerFilterer) ParseValidatorAdded(log types.Log) 
 	if err := _StreamManager.contract.UnpackLog(event, "ValidatorAdded", log); err != nil {
 		return nil, err
 	}
+	event.Raw = log
 	return event, nil
 }
 
@@ -2695,5 +2770,6 @@ func (_StreamManager *StreamManagerFilterer) ParseValidatorRemoved(log types.Log
 	if err := _StreamManager.contract.UnpackLog(event, "ValidatorRemoved", log); err != nil {
 		return nil, err
 	}
+	event.Raw = log
 	return event, nil
 }

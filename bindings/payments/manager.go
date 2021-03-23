@@ -154,7 +154,7 @@ func bindPaymentManager(address common.Address, caller bind.ContractCaller, tran
 // sets the output to result. The result type might be a single field for simple
 // returns, a slice of interfaces for anonymous returns and a struct for named
 // returns.
-func (_PaymentManager *PaymentManagerRaw) Call(opts *bind.CallOpts, result interface{}, method string, params ...interface{}) error {
+func (_PaymentManager *PaymentManagerRaw) Call(opts *bind.CallOpts, result *[]interface{}, method string, params ...interface{}) error {
 	return _PaymentManager.Contract.PaymentManagerCaller.contract.Call(opts, result, method, params...)
 }
 
@@ -173,7 +173,7 @@ func (_PaymentManager *PaymentManagerRaw) Transact(opts *bind.TransactOpts, meth
 // sets the output to result. The result type might be a single field for simple
 // returns, a slice of interfaces for anonymous returns and a struct for named
 // returns.
-func (_PaymentManager *PaymentManagerCallerRaw) Call(opts *bind.CallOpts, result interface{}, method string, params ...interface{}) error {
+func (_PaymentManager *PaymentManagerCallerRaw) Call(opts *bind.CallOpts, result *[]interface{}, method string, params ...interface{}) error {
 	return _PaymentManager.Contract.contract.Call(opts, result, method, params...)
 }
 
@@ -192,12 +192,17 @@ func (_PaymentManager *PaymentManagerTransactorRaw) Transact(opts *bind.Transact
 //
 // Solidity: function isOwner() view returns(bool)
 func (_PaymentManager *PaymentManagerCaller) IsOwner(opts *bind.CallOpts) (bool, error) {
-	var (
-		ret0 = new(bool)
-	)
-	out := ret0
-	err := _PaymentManager.contract.Call(opts, out, "isOwner")
-	return *ret0, err
+	var out []interface{}
+	err := _PaymentManager.contract.Call(opts, &out, "isOwner")
+
+	if err != nil {
+		return *new(bool), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(bool)).(*bool)
+
+	return out0, err
+
 }
 
 // IsOwner is a free data retrieval call binding the contract method 0x8f32d59b.
@@ -218,12 +223,17 @@ func (_PaymentManager *PaymentManagerCallerSession) IsOwner() (bool, error) {
 //
 // Solidity: function owner() view returns(address)
 func (_PaymentManager *PaymentManagerCaller) Owner(opts *bind.CallOpts) (common.Address, error) {
-	var (
-		ret0 = new(common.Address)
-	)
-	out := ret0
-	err := _PaymentManager.contract.Call(opts, out, "owner")
-	return *ret0, err
+	var out []interface{}
+	err := _PaymentManager.contract.Call(opts, &out, "owner")
+
+	if err != nil {
+		return *new(common.Address), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(common.Address)).(*common.Address)
+
+	return out0, err
+
 }
 
 // Owner is a free data retrieval call binding the contract method 0x8da5cb5b.
@@ -249,15 +259,26 @@ func (_PaymentManager *PaymentManagerCaller) Transfers(opts *bind.CallOpts, arg0
 	Nonce  uint64
 	State  uint8
 }, error) {
-	ret := new(struct {
+	var out []interface{}
+	err := _PaymentManager.contract.Call(opts, &out, "transfers", arg0)
+
+	outstruct := new(struct {
 		Hash   [32]byte
 		Signer common.Address
 		Nonce  uint64
 		State  uint8
 	})
-	out := ret
-	err := _PaymentManager.contract.Call(opts, out, "transfers", arg0)
-	return *ret, err
+	if err != nil {
+		return *outstruct, err
+	}
+
+	outstruct.Hash = *abi.ConvertType(out[0], new([32]byte)).(*[32]byte)
+	outstruct.Signer = *abi.ConvertType(out[1], new(common.Address)).(*common.Address)
+	outstruct.Nonce = *abi.ConvertType(out[2], new(uint64)).(*uint64)
+	outstruct.State = *abi.ConvertType(out[3], new(uint8)).(*uint8)
+
+	return *outstruct, err
+
 }
 
 // Transfers is a free data retrieval call binding the contract method 0x3c64f04b.
@@ -559,6 +580,7 @@ func (_PaymentManager *PaymentManagerFilterer) ParseOwnershipTransferred(log typ
 	if err := _PaymentManager.contract.UnpackLog(event, "OwnershipTransferred", log); err != nil {
 		return nil, err
 	}
+	event.Raw = log
 	return event, nil
 }
 
@@ -720,6 +742,7 @@ func (_PaymentManager *PaymentManagerFilterer) ParsePendingTransfer(log types.Lo
 	if err := _PaymentManager.contract.UnpackLog(event, "PendingTransfer", log); err != nil {
 		return nil, err
 	}
+	event.Raw = log
 	return event, nil
 }
 
@@ -863,6 +886,7 @@ func (_PaymentManager *PaymentManagerFilterer) ParseRetry(log types.Log) (*Payme
 	if err := _PaymentManager.contract.UnpackLog(event, "Retry", log); err != nil {
 		return nil, err
 	}
+	event.Raw = log
 	return event, nil
 }
 
@@ -1015,6 +1039,7 @@ func (_PaymentManager *PaymentManagerFilterer) ParseTxFailed(log types.Log) (*Pa
 	if err := _PaymentManager.contract.UnpackLog(event, "TxFailed", log); err != nil {
 		return nil, err
 	}
+	event.Raw = log
 	return event, nil
 }
 
@@ -1167,5 +1192,6 @@ func (_PaymentManager *PaymentManagerFilterer) ParseTxSuccess(log types.Log) (*P
 	if err := _PaymentManager.contract.UnpackLog(event, "TxSuccess", log); err != nil {
 		return nil, err
 	}
+	event.Raw = log
 	return event, nil
 }

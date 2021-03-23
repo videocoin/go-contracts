@@ -154,7 +154,7 @@ func bindNativeBridge(address common.Address, caller bind.ContractCaller, transa
 // sets the output to result. The result type might be a single field for simple
 // returns, a slice of interfaces for anonymous returns and a struct for named
 // returns.
-func (_NativeBridge *NativeBridgeRaw) Call(opts *bind.CallOpts, result interface{}, method string, params ...interface{}) error {
+func (_NativeBridge *NativeBridgeRaw) Call(opts *bind.CallOpts, result *[]interface{}, method string, params ...interface{}) error {
 	return _NativeBridge.Contract.NativeBridgeCaller.contract.Call(opts, result, method, params...)
 }
 
@@ -173,7 +173,7 @@ func (_NativeBridge *NativeBridgeRaw) Transact(opts *bind.TransactOpts, method s
 // sets the output to result. The result type might be a single field for simple
 // returns, a slice of interfaces for anonymous returns and a struct for named
 // returns.
-func (_NativeBridge *NativeBridgeCallerRaw) Call(opts *bind.CallOpts, result interface{}, method string, params ...interface{}) error {
+func (_NativeBridge *NativeBridgeCallerRaw) Call(opts *bind.CallOpts, result *[]interface{}, method string, params ...interface{}) error {
 	return _NativeBridge.Contract.contract.Call(opts, result, method, params...)
 }
 
@@ -192,12 +192,17 @@ func (_NativeBridge *NativeBridgeTransactorRaw) Transact(opts *bind.TransactOpts
 //
 // Solidity: function getLastBlock() view returns(uint256)
 func (_NativeBridge *NativeBridgeCaller) GetLastBlock(opts *bind.CallOpts) (*big.Int, error) {
-	var (
-		ret0 = new(*big.Int)
-	)
-	out := ret0
-	err := _NativeBridge.contract.Call(opts, out, "getLastBlock")
-	return *ret0, err
+	var out []interface{}
+	err := _NativeBridge.contract.Call(opts, &out, "getLastBlock")
+
+	if err != nil {
+		return *new(*big.Int), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(*big.Int)).(**big.Int)
+
+	return out0, err
+
 }
 
 // GetLastBlock is a free data retrieval call binding the contract method 0x7f2c4ca8.
@@ -218,12 +223,17 @@ func (_NativeBridge *NativeBridgeCallerSession) GetLastBlock() (*big.Int, error)
 //
 // Solidity: function isOwner() view returns(bool)
 func (_NativeBridge *NativeBridgeCaller) IsOwner(opts *bind.CallOpts) (bool, error) {
-	var (
-		ret0 = new(bool)
-	)
-	out := ret0
-	err := _NativeBridge.contract.Call(opts, out, "isOwner")
-	return *ret0, err
+	var out []interface{}
+	err := _NativeBridge.contract.Call(opts, &out, "isOwner")
+
+	if err != nil {
+		return *new(bool), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(bool)).(*bool)
+
+	return out0, err
+
 }
 
 // IsOwner is a free data retrieval call binding the contract method 0x8f32d59b.
@@ -244,12 +254,17 @@ func (_NativeBridge *NativeBridgeCallerSession) IsOwner() (bool, error) {
 //
 // Solidity: function owner() view returns(address)
 func (_NativeBridge *NativeBridgeCaller) Owner(opts *bind.CallOpts) (common.Address, error) {
-	var (
-		ret0 = new(common.Address)
-	)
-	out := ret0
-	err := _NativeBridge.contract.Call(opts, out, "owner")
-	return *ret0, err
+	var out []interface{}
+	err := _NativeBridge.contract.Call(opts, &out, "owner")
+
+	if err != nil {
+		return *new(common.Address), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(common.Address)).(*common.Address)
+
+	return out0, err
+
 }
 
 // Owner is a free data retrieval call binding the contract method 0x8da5cb5b.
@@ -270,12 +285,17 @@ func (_NativeBridge *NativeBridgeCallerSession) Owner() (common.Address, error) 
 //
 // Solidity: function transfers(bytes32 ) view returns(bool)
 func (_NativeBridge *NativeBridgeCaller) Transfers(opts *bind.CallOpts, arg0 [32]byte) (bool, error) {
-	var (
-		ret0 = new(bool)
-	)
-	out := ret0
-	err := _NativeBridge.contract.Call(opts, out, "transfers", arg0)
-	return *ret0, err
+	var out []interface{}
+	err := _NativeBridge.contract.Call(opts, &out, "transfers", arg0)
+
+	if err != nil {
+		return *new(bool), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(bool)).(*bool)
+
+	return out0, err
+
 }
 
 // Transfers is a free data retrieval call binding the contract method 0x3c64f04b.
@@ -525,6 +545,7 @@ func (_NativeBridge *NativeBridgeFilterer) ParseOwnershipTransferred(log types.L
 	if err := _NativeBridge.contract.UnpackLog(event, "OwnershipTransferred", log); err != nil {
 		return nil, err
 	}
+	event.Raw = log
 	return event, nil
 }
 
@@ -687,5 +708,6 @@ func (_NativeBridge *NativeBridgeFilterer) ParseTransferBridged(log types.Log) (
 	if err := _NativeBridge.contract.UnpackLog(event, "TransferBridged", log); err != nil {
 		return nil, err
 	}
+	event.Raw = log
 	return event, nil
 }
