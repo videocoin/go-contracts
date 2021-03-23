@@ -83,8 +83,3 @@ vendor:
 	go mod tidy
 	go mod vendor
 	modvendor -copy="**/*.c **/*.h" -v
-
-.PHONY: build
-build:
-	mkdir -p build
-	go build -o build/bin/example -tags=$(TAGS) -mod=readonly ./example
